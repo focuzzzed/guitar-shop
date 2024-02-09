@@ -17,13 +17,19 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "db:generate": "npx prisma generate --schema src/shared/libs/models/prisma/schema.prisma",
+    "db:reset": "npx prisma migrate reset --schema src/shared/libs/models/prisma/schema.prisma --force --skip-generate --skip-seed",
+    "db:lint": "npx prisma validate --schema src/shared/libs/models/prisma/schema.prisma",
+    "db:migrate": "npx prisma migrate dev --schema ./schema.prisma --skip-generate --skip-seed"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
+    "@prisma/client": "5.9.1",
     "bcrypt": "5.1.1",
+    "class-validator": "0.14.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
   },
