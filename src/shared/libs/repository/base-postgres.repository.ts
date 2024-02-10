@@ -15,7 +15,7 @@ export abstract class BasePostgresRepository<
       return null;
     }
 
-    this.createEntity(document);
+    return this.createEntity(document);
   }
 
   public async findById(id: EntityType['id']): Promise<EntityType> {

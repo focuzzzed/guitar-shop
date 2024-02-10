@@ -1,0 +1,19 @@
+#Register new user
+POST http://localhost:3333/users/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "joker",
+  "email": "joker@gotham.com",
+  "password": "HAhaH4h"
+}
+###
+
+#Login
+POST http://localhost:3333/users/login HTTP/1.1
+Content-Type: application/json
+
+{
+"email": "joker@gotham.com",
+"password": "HAhaH4h"
+}
