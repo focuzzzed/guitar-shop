@@ -1,16 +1,16 @@
 #Register new user
-POST http://localhost:3333/users/register HTTP/1.1
+POST http://localhost:3333/auth/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "45dollars",
-  "email": "45dollars@rollin.com",
-  "password": "blackjet76"
+  "name": "kirito",
+  "email": "blacksword@ainkrad.com",
+  "password": "asunaLight"
 }
 ###
 
 #Login
-POST http://localhost:3333/users/login HTTP/1.1
+POST http://localhost:3333/auth/login HTTP/1.1
 Content-Type: application/json
 
 {
@@ -20,6 +20,6 @@ Content-Type: application/json
 ###
 
 # Check auth status
-GET http://localhost:3333/users/status HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMWE5ODFlNy0wMTFkLTRmMTMtYjMxZC1hOGJjNmI0NzVmZjQiLCJlbWFpbCI6IjQ1ZG9sbGFyc0Byb2xsaW4uY29tIiwibmFtZSI6IjQ1ZG9sbGFycyIsImlhdCI6MTcwNzYwNDI2NCwiZXhwIjoxNzA3NjA2MDY0fQ.-CwB5z79gpP4Kj8uPzT5NGFgfdK7GcQb1VmXLfUxE7Q
+GET http://localhost:3333/auth/status HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMWE5ODFlNy0wMTFkLTRmMTMtYjMxZC1hOGJjNmI0NzVmZjQiLCJlbWFpbCI6IjQ1ZG9sbGFyc0Byb2xsaW4uY29tIiwibmFtZSI6IjQ1ZG9sbGFycyIsImlhdCI6MTcwNzYwNjg3OCwiZXhwIjoxNzA3NjA4Njc4fQ.RWDq2_ZOuxGegEN7urL8fgC3BljlNxRzaa5nevbhlYA
 ###
