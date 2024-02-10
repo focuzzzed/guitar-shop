@@ -17,6 +17,6 @@ import { MailModule } from '../mailer/mail.module';
     MailModule
   ],
   controllers: [AuthController],
-  providers: [AuthService] //TODO: Проверить необходимость [1]
+  providers: [AuthService]
 })
 export class AuthModule { }
