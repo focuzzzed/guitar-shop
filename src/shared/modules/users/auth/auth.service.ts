@@ -1,15 +1,17 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { UserRepository } from '../user/user.repository';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UserEntity } from '../user/user.entity';
 import { LoginUserDTO } from './dto/login-user.dto';
 import { JwtService } from '@nestjs/jwt';
+import { MailService } from '../mailer/mail.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly jwtService: JwtService,
+    private readonly mailService: MailService,
   ) { }
 
   public async register(dto: CreateUserDTO) {
@@ -27,7 +29,10 @@ export class AuthService {
       })
       .setPassword(dto.password);
 
-    return this.userRepository.save(userEntity);
+    const registeredUser = await this.userRepository.save(userEntity);
+    await this.mailService.sendLoginInfo(dto);
+
+    return registeredUser;
   }
 
   public async verify(dto: LoginUserDTO) {
@@ -38,7 +43,7 @@ export class AuthService {
     }
 
     if(! await existsUser.comparePassword(dto.password)) {
-      throw new ConflictException(`Incorrect login or password`);
+      throw new UnauthorizedException(`Incorrect login or password`);
     }
 
     return existsUser;

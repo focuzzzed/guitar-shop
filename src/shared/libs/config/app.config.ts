@@ -9,13 +9,27 @@ interface AppConfig  {
   jwtSecret: string,
   jwtAccessTokenExpiresIn: string,
   jwtAlgorithm: AvailableJWTAlgorithm,
+  mail: {
+    host: string,
+    port: number,
+    user: string,
+    password: string,
+    from: string
+  }
 }
 
 const validationSchema = Joi.object({
   port: Joi.number().required().port(),
   jwtSecret: Joi.string().required(),
   jwtAccessTokenExpiresIn: Joi.string().required(),
-  jwtAlgorithm: Joi.string().valid(...Object.values(JWT_ALGORITHM)),
+  jwtAlgorithm: Joi.string().valid(...Object.values(JWT_ALGORITHM)).required(),
+  mail: Joi.object({
+    host: Joi.string(),
+    port: Joi.number().required().port(),
+    user: Joi.string().required(),
+    password: Joi.string().required(),
+    from: Joi.string().required(),
+  })
 })
 
 function validateConfig(config: AppConfig) {
@@ -32,6 +46,13 @@ function getConfig(): AppConfig {
     jwtSecret: process.env.JWT_ACCESS_SECRET,
     jwtAccessTokenExpiresIn: process.env.JWT_ACCESS_EXPIRES_IN,
     jwtAlgorithm: process.env.JWT_ALGORITHM as AvailableJWTAlgorithm,
+    mail: {
+      host: process.env.MAIL_SMTP_HOST,
+      port: parseInt(process.env.MAIL_SMTP_PORT, 10),
+      user: process.env.MAIL_USER_NAME,
+      password: process.env.MAIL_USER_PASSWORD,
+      from: process.env.MAIL_FROM,
+    }
   }
 
   validateConfig(config);

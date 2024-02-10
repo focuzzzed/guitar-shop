@@ -5,6 +5,7 @@ import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { getJWTOptions } from '../../../helpers';
+import { MailModule } from '../mailer/mail.module';
 
 @Module({
   imports: [
@@ -12,9 +13,10 @@ import { getJWTOptions } from '../../../helpers';
     JwtModule.registerAsync({
       inject: [ConfigService],
       useFactory: getJWTOptions
-    })
+    }),
+    MailModule
   ],
   controllers: [AuthController],
-  providers: [AuthService]
+  providers: [AuthService] //TODO: Проверить необходимость [1]
 })
 export class AuthModule { }

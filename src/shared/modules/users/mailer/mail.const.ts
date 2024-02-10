@@ -1,0 +1,1 @@
+export const EMAIL_SEND_LOGIN_INFO = 'Входные данные для нового пользователя';
