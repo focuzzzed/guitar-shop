@@ -9,6 +9,7 @@ interface AppConfig  {
   jwtSecret: string,
   jwtAccessTokenExpiresIn: string,
   jwtAlgorithm: AvailableJWTAlgorithm,
+  uploadDirectory: string,
   mail: {
     host: string,
     port: number,
@@ -23,6 +24,7 @@ const validationSchema = Joi.object({
   jwtSecret: Joi.string().required(),
   jwtAccessTokenExpiresIn: Joi.string().required(),
   jwtAlgorithm: Joi.string().valid(...Object.values(JWT_ALGORITHM)).required(),
+  uploadDirectory: Joi.string().required(),
   mail: Joi.object({
     host: Joi.string(),
     port: Joi.number().required().port(),
@@ -46,6 +48,7 @@ function getConfig(): AppConfig {
     jwtSecret: process.env.JWT_ACCESS_SECRET,
     jwtAccessTokenExpiresIn: process.env.JWT_ACCESS_EXPIRES_IN,
     jwtAlgorithm: process.env.JWT_ALGORITHM as AvailableJWTAlgorithm,
+    uploadDirectory: process.env.UPLOAD_DIRECTORY,
     mail: {
       host: process.env.MAIL_SMTP_HOST,
       port: parseInt(process.env.MAIL_SMTP_PORT, 10),

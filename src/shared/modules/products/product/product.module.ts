@@ -6,6 +6,7 @@ import { ProductController } from './product.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { getJWTOptions } from '../../../helpers';
+import { FileModule } from '../file/file.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { getJWTOptions } from '../../../helpers';
       inject: [ConfigService],
       useFactory: getJWTOptions
     }),
+    FileModule,
     PrismaClientModule
   ],
   controllers: [ProductController],

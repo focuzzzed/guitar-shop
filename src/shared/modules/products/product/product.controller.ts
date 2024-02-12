@@ -71,7 +71,6 @@ export class ProductController {
   })
   @Get('/')
   public async index(@Query() query: ProductQuery): Promise<ProductWithPaginationRDO> {
-    console.log(query);
     const productsWithPagination = await this.productService.getAllProducts(query);
     const result = {
       ...productsWithPagination,
