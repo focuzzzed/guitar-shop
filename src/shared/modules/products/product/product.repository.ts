@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { BasePostgresRepository, PrismaClientService } from '../../../libs';
 import { ProductEntity } from './product.entity';
 import { PaginationResult, Product } from '../../../types';
-import { ProductQuery } from '../query/product.query';
+import { ProductQuery } from './query/product.query';
 import { Prisma } from '@prisma/client';
-import { UpdateProductDTO } from '../dto/update-product.dto';
+import { UpdateProductDTO } from './dto/update-product.dto';
 
 @Injectable()
 export class ProductRepository extends BasePostgresRepository<ProductEntity, Product> {
@@ -60,8 +60,10 @@ export class ProductRepository extends BasePostgresRepository<ProductEntity, Pro
   }
 
   public async getById(id: string) {
-    const document = await this.client.product.findFirst({
+    const document = await this.client.product.findFirstOrThrow({
       where: { id },
+    }).catch(() => {
+      throw new NotFoundException(`Product with id ${id} not found`);
     });
 
     return this.createEntityFromDocument(document as Product);
@@ -79,7 +81,9 @@ export class ProductRepository extends BasePostgresRepository<ProductEntity, Pro
     const updatedRecord = await this.client.product.update({
       where: { id },
       data: { ...dto },
-    })
+    }).catch(() => {
+      throw new NotFoundException(`Product with id ${id} not found`);
+    });
 
     return this.createEntityFromDocument(updatedRecord as Product);
   }
@@ -87,6 +91,8 @@ export class ProductRepository extends BasePostgresRepository<ProductEntity, Pro
   public async delete(id: string): Promise<void> {
     await this.client.product.delete({
       where: { id },
+    }).catch(() => {
+      throw new NotFoundException(`Product with id ${id} not found`);
     });
   }
 }

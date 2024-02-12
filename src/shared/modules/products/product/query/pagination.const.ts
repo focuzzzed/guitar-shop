@@ -1,5 +1,5 @@
-import { SortDirection } from '../../../types';
-import { SortField } from '../../../types/paginations/sort-field.enum';
+import { SortDirection } from '../../../../types';
+import { SortField } from '../../../../types/paginations/sort-field.enum';
 
 export const PAGINATION_DEFAULT_VALUE = {
   PRODUCTS_PER_PAGE: 7,

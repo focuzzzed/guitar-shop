@@ -1,9 +1,9 @@
 import { IsArray, IsIn, IsOptional } from 'class-validator';
 import { Transform } from 'class-transformer';
 import { PAGINATION_DEFAULT_VALUE } from './pagination.const';
-import { GuitarStringsCount, GuitarTypes, SortDirection } from '../../../types';
-import { SortField } from '../../../types/paginations/sort-field.enum';
-import { PRODUCT_AVAILABLE_VALUE } from '../product/product.const';
+import { GuitarStringsCount, GuitarTypes, SortDirection } from '../../../../types';
+import { SortField } from '../../../../types/paginations/sort-field.enum';
+import { PRODUCT_AVAILABLE_VALUE } from '../product.const';
 
 export class ProductQuery {
   @Transform(({ value }) => +value || PAGINATION_DEFAULT_VALUE.PRODUCTS_PER_PAGE)

@@ -1,10 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { ProductQuery } from '../query/product.query';
+import { Injectable } from '@nestjs/common';
+import { ProductQuery } from './query/product.query';
 import { PaginationResult } from '../../../types';
 import { ProductRepository } from './product.repository';
 import { ProductEntity } from './product.entity';
-import { CreateProductDTO } from '../dto/create-product.dto';
-import { UpdateProductDTO } from '../dto/update-product.dto';
+import { CreateProductDTO } from './dto/create-product.dto';
+import { UpdateProductDTO } from './dto/update-product.dto';
 
 @Injectable()
 export class ProductService {
@@ -17,19 +17,11 @@ export class ProductService {
   }
 
   public async getProductById(id: string): Promise<ProductEntity> {
-    try{
-      return this.productRepository.getById(id);
-    } catch {
-      throw new NotFoundException(`Product with id ${id} not found`);
-    }
+    return this.productRepository.getById(id);
   }
 
   public async updateProduct(id: string, dto: UpdateProductDTO): Promise<ProductEntity> {
-    try{
-      return await this.productRepository.update(id, dto);
-    } catch {
-      throw new NotFoundException(`Product with id ${id} not found`);
-    }
+    return this.productRepository.update(id, dto);
   }
 
   public async createProduct(dto: CreateProductDTO): Promise<ProductEntity> {
@@ -37,10 +29,6 @@ export class ProductService {
   }
 
   public async deleteProduct(id: string): Promise<void> {
-    try{
-      await this.productRepository.delete(id);
-    } catch {
-      throw new NotFoundException(`Product with id ${id} not found`);
-    }
+    await this.productRepository.delete(id);
   }
 }

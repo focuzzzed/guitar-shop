@@ -1,4 +1,4 @@
-import { PaginationResult } from '../../../types';
+import { PaginationResult } from '../../../../types';
 import { ProductRDO } from './product.rdo';
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose, Type } from 'class-transformer';
