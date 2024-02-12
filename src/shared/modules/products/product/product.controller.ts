@@ -15,6 +15,7 @@ import { JWTAuth } from '../../../libs/guards';
 import { GuitarTypes, SortDirection } from '../../../types';
 import { PRODUCT_AVAILABLE_VALUE } from './product.const';
 import { SortField } from '../../../types/paginations/sort-field.enum';
+import { ProductRDO } from './rdo/product.rdo';
 
 @ApiTags('products')
 @Controller('products')
@@ -121,9 +122,9 @@ export class ProductController {
   })
   @UseGuards(JWTAuth)
   @Patch('/:id')
-  public async update(@Param('id') id: string, @Body() dto: UpdateProductDTO): Promise<DetailedProductRDO> {
+  public async update(@Param('id') id: string, @Body() dto: UpdateProductDTO): Promise<ProductRDO> {
     const updatedProduct = await this.productService.updateProduct(id, dto);
-    return fillDTO(DetailedProductRDO, updatedProduct.serialize());
+    return fillDTO(ProductRDO, updatedProduct.serialize());
   }
 
   @ApiHeader({

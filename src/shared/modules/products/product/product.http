@@ -24,12 +24,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMWE5ODFlN
 ###
 
 #Product update
-PATCH http://localhost:3333/products/6f56b02e-77de-44f8-a0b2-67d72a350fa6 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMWE5ODFlNy0wMTFkLTRmMTMtYjMxZC1hOGJjNmI0NzVmZjQiLCJlbWFpbCI6IjQ1ZG9sbGFyc0Byb2xsaW4uY29tIiwibmFtZSI6IjQ1ZG9sbGFycyIsImlhdCI6MTcwNzc1MjkwNSwiZXhwIjoxNzA3NzU0NzA1fQ.3Gqpju4G7gQlwCfj1JUedVLX1sKmRTUF7I4N8yJ-Znc
+PATCH http://localhost:3333/products/aa8543a2-1bbf-483f-8e87-1acc2e51298f HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMWE5ODFlNy0wMTFkLTRmMTMtYjMxZC1hOGJjNmI0NzVmZjQiLCJlbWFpbCI6IjQ1ZG9sbGFyc0Byb2xsaW4uY29tIiwibmFtZSI6IjQ1ZG9sbGFycyIsImlhdCI6MTcwNzc3MTMwMywiZXhwIjoxNzA3NzczMTAzfQ.WWSVTclRWreOoFAJZbKxYw9G8hOgFDsuYL2ggTEhzjY
 Content-Type: application/json
 
 {
-  "price": 0
+  "price": 20000
 }
 ###
 
