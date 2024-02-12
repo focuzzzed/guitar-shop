@@ -4,7 +4,7 @@ import { CreateUserDTO } from './dto/create-user.dto';
 import { UserEntity } from '../user/user.entity';
 import { LoginUserDTO } from './dto/login-user.dto';
 import { JwtService } from '@nestjs/jwt';
-import { MailService } from '../mailer/mail.service';
+import { MailService } from '../mail/mail.service';
 
 @Injectable()
 export class AuthService {

@@ -20,7 +20,7 @@ export function getMailerAsyncOptions(): MailerAsyncOptions {
           from: configService.get('app.mail.from'),
         },
         template: {
-          dir: resolve(__dirname, '..', 'modules', 'users', 'mailer', 'templates'),
+          dir: resolve(__dirname, '..', 'modules', 'users', 'mail', 'templates'),
           adapter: new HandlebarsAdapter(),
           options: {
             strict: true,
