@@ -10,6 +10,6 @@ export interface Product {
   photoUrl: string;
   guitarType: GuitarTypes;
   article: string;
-  stringsCount: number;
-  price: GuitarStringsCount;
+  stringsCount: GuitarStringsCount;
+  price: number;
 }

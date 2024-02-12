@@ -1,3 +1,3 @@
-import { AVAILABLE_GUITAR_STRINGS_COUNT } from '../../modules/products/product.const';
+import { PRODUCT_AVAILABLE_VALUE } from '../../modules/products/product.const';
 
-export type GuitarStringsCount = typeof AVAILABLE_GUITAR_STRINGS_COUNT[number];
+export type GuitarStringsCount = typeof PRODUCT_AVAILABLE_VALUE.STRINGS_COUNT[number];

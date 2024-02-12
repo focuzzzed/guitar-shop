@@ -9,8 +9,8 @@ export class ProductEntity implements Product, Entity<EntityIdType> {
   public photoUrl: string;
   public guitarType: GuitarTypes;
   public article: string;
-  public stringsCount: number;
-  public price: GuitarStringsCount;
+  public stringsCount: GuitarStringsCount;
+  public price: number;
 
   public populate(data: Product) {
     this.id = data.id;

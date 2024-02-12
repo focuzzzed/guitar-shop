@@ -6,7 +6,7 @@ import { UserRDO } from './rdo/user.rdo';
 import { LoginUserDTO } from './dto/login-user.dto';
 import { LoggedUserRDO } from './rdo/logged-user.rdo';
 import { JWTAuth } from '../../../libs/guards';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiHeader, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('authentication')
 @Controller('auth')
@@ -50,6 +50,11 @@ export class AuthController {
     return fillDTO(LoggedUserRDO, Object.assign(verifiedUser.serialize(), accessToken));
   }
 
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'JWT token',
+    example: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ...'
+  })
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'User authorized. Returns user without password',

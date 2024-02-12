@@ -4,6 +4,7 @@ import { ProductEntity } from './product.entity';
 import { PaginationResult, Product } from '../../types';
 import { ProductQuery } from './query/product.query';
 import { Prisma } from '@prisma/client';
+import { UpdateProductDTO } from './dto/update-product.dto';
 
 @Injectable()
 export class ProductRepository extends BasePostgresRepository<ProductEntity, Product> {
@@ -63,10 +64,6 @@ export class ProductRepository extends BasePostgresRepository<ProductEntity, Pro
       where: { id },
     });
 
-    if(!document) {
-      throw new NotFoundException(`Product with id ${id} not found`);
-    }
-
     return this.createEntityFromDocument(document as Product);
   }
 
@@ -78,12 +75,10 @@ export class ProductRepository extends BasePostgresRepository<ProductEntity, Pro
     return this.createEntityFromDocument(newRecord as Product);
   }
 
-  public async update(id: string, entity: ProductEntity): Promise<ProductEntity> {
-    const serializedEntity = entity.serialize();
-
+  public async update(id: string, dto: UpdateProductDTO): Promise<ProductEntity> {
     const updatedRecord = await this.client.product.update({
       where: { id },
-      data: { ...serializedEntity },
+      data: { ...dto },
     })
 
     return this.createEntityFromDocument(updatedRecord as Product);

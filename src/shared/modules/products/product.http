@@ -1,0 +1,40 @@
+#Get posts with pagination
+GET http://localhost:3333/products/?page=2&sortField=price HTTP/1.1
+###
+
+#Product creation
+POST http://localhost:3333/products HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMWE5ODFlNy0wMTFkLTRmMTMtYjMxZC1hOGJjNmI0NzVmZjQiLCJlbWFpbCI6IjQ1ZG9sbGFyc0Byb2xsaW4uY29tIiwibmFtZSI6IjQ1ZG9sbGFycyIsImlhdCI6MTcwNzcwMTk3OSwiZXhwIjoxNzA3NzAzNzc5fQ.YA32Jk6ESnj5kGoD-JYhScRJWTFKM_hHk4NguksZbEo
+Content-Type: application/json
+
+{
+  "title": "Sample Guitar",
+  "description": "Has he lost his mind? Can he see or is he blind?",
+  "additionDate": "2024-02-11T23:54:01.826Z",
+  "photoUrl": "server/static/02/12/image.jpeg",
+  "guitarType": "акустика",
+  "article": "fender-telecaster-1234",
+  "stringsCount": 6,
+  "price": 985000
+}
+###
+
+#Show product by id
+GET http://localhost:3333/products/c4b3db74-7d68-4e17-8c93-e88072157365 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMWE5ODFlNy0wMTFkLTRmMTMtYjMxZC1hOGJjNmI0NzVmZjQiLCJlbWFpbCI6IjQ1ZG9sbGFyc0Byb2xsaW4uY29tIiwibmFtZSI6IjQ1ZG9sbGFycyIsImlhdCI6MTcwNzcwMTk3OSwiZXhwIjoxNzA3NzAzNzc5fQ.YA32Jk6ESnj5kGoD-JYhScRJWTFKM_hHk4NguksZbEo
+###
+
+#Product update
+PATCH http://localhost:3333/products/c4b3db74-7d68-4e17-8c93-e88072157365 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMWE5ODFlNy0wMTFkLTRmMTMtYjMxZC1hOGJjNmI0NzVmZjQiLCJlbWFpbCI6IjQ1ZG9sbGFyc0Byb2xsaW4uY29tIiwibmFtZSI6IjQ1ZG9sbGFycyIsImlhdCI6MTcwNzcwMTk3OSwiZXhwIjoxNzA3NzAzNzc5fQ.YA32Jk6ESnj5kGoD-JYhScRJWTFKM_hHk4NguksZbEo
+Content-Type: application/json
+
+{
+  "price": 12000
+}
+###
+
+#Product remove
+DELETE http://localhost:3333/products/c4b3db74-7d68-4e17-8c93-e88072157365 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMWE5ODFlNy0wMTFkLTRmMTMtYjMxZC1hOGJjNmI0NzVmZjQiLCJlbWFpbCI6IjQ1ZG9sbGFyc0Byb2xsaW4uY29tIiwibmFtZSI6IjQ1ZG9sbGFycyIsImlhdCI6MTcwNzcwMTk3OSwiZXhwIjoxNzA3NzAzNzc5fQ.YA32Jk6ESnj5kGoD-JYhScRJWTFKM_hHk4NguksZbEo
+###
