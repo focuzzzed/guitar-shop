@@ -1,7 +1,7 @@
 import { PaginationResult } from '../../../types';
 import { ProductRDO } from './product.rdo';
 import { ApiProperty } from '@nestjs/swagger';
-import { Expose } from 'class-transformer';
+import { Expose, Type } from 'class-transformer';
 
 export class ProductWithPaginationRDO implements PaginationResult<ProductRDO> {
   @ApiProperty({
@@ -15,6 +15,7 @@ export class ProductWithPaginationRDO implements PaginationResult<ProductRDO> {
       price: 985000,
     }],
   })
+  @Type(() => ProductRDO)
   @Expose()
   public entities: ProductRDO[];
 

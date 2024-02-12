@@ -1,14 +1,6 @@
 import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  HttpCode,
-  HttpStatus,
-  Param,
-  Patch,
-  Post,
-  Query,
+  Body, Controller, Delete, Get, HttpCode,
+  HttpStatus, Param, Patch, Post, Query,
   UseGuards
 } from '@nestjs/common';
 import { ProductService } from './product.service';
@@ -17,9 +9,12 @@ import { ProductWithPaginationRDO } from './rdo/product-with-pagination.rdo';
 import { fillDTO } from '../../helpers';
 import { CreateProductDTO } from './dto/create-product.dto';
 import { DetailedProductRDO } from './rdo/detailed-product.rdo';
-import { ApiHeader, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiHeader, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UpdateProductDTO } from './dto/update-product.dto';
 import { JWTAuth } from '../../libs/guards';
+import { GuitarTypes, SortDirection } from '../../types';
+import { PRODUCT_AVAILABLE_VALUE } from './product.const';
+import { SortField } from '../../types/paginations/sort-field.enum';
 
 @ApiTags('products')
 @Controller('products')
@@ -28,10 +23,51 @@ export class ProductController {
     private readonly productService: ProductService,
   ) { }
 
+  @ApiQuery({
+    name: 'limit',
+    type: 'number',
+    required: false,
+    example: 3,
+  })
+  @ApiQuery({
+    name: 'guitarTypes',
+    type: 'string',
+    enum: GuitarTypes,
+    isArray: true,
+    required: false,
+    example: [GuitarTypes.Acoustic, GuitarTypes.Electro],
+  })
+  @ApiQuery({
+    name: 'stringsCount',
+    type: 'number',
+    enum: Object.values(PRODUCT_AVAILABLE_VALUE.STRINGS_COUNT),
+    isArray: true, required: false,
+    example: [PRODUCT_AVAILABLE_VALUE.STRINGS_COUNT[0], PRODUCT_AVAILABLE_VALUE.STRINGS_COUNT[3]],
+  })
+  @ApiQuery({
+    name: 'sortField',
+    type: 'string',
+    enum: Object.values(Object.values(SortField)),
+    required: false,
+    example: SortField.ByPrice,
+  })
+  @ApiQuery({
+    name: 'sortDirection',
+    type: 'string',
+    enum: Object.values(Object.values(SortDirection)),
+    required: false,
+    example: SortDirection.Ascending,
+  })
+  @ApiQuery({
+    name: 'page',
+    type: 'number',
+    required: false,
+    example: 1,
+  })
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'Products with pagination',
-    type: ProductWithPaginationRDO
+    type: ProductWithPaginationRDO,
   })
   @Get('/')
   public async index(@Query() query: ProductQuery): Promise<ProductWithPaginationRDO> {

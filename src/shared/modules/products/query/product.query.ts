@@ -17,6 +17,7 @@ export class ProductQuery {
   @IsOptional()
   public guitarTypes?: GuitarTypes[];
 
+  @Transform(({ value }) => value.map((elem: string) => +elem))
   @IsIn(PRODUCT_AVAILABLE_VALUE.STRINGS_COUNT, {
     each: true,
   })
@@ -24,7 +25,7 @@ export class ProductQuery {
   @IsOptional()
   public stringsCount?: GuitarStringsCount[];
 
-  @IsIn(Object.values(SortField)) //TODO: Проверить сортировочные поля
+  @IsIn(Object.values(SortField))
   @IsOptional()
   public sortField: SortField = PAGINATION_DEFAULT_VALUE.SORT_FIELD;
 

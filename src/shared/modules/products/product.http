@@ -1,21 +1,20 @@
 #Get posts with pagination
-GET http://localhost:3333/products/?page=2&sortField=price HTTP/1.1
+GET http://localhost:3333/products?guitarTypes[]=укулеле&sortField=additionDate&sortDirection=desc HTTP/1.1
 ###
 
 #Product creation
 POST http://localhost:3333/products HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMWE5ODFlNy0wMTFkLTRmMTMtYjMxZC1hOGJjNmI0NzVmZjQiLCJlbWFpbCI6IjQ1ZG9sbGFyc0Byb2xsaW4uY29tIiwibmFtZSI6IjQ1ZG9sbGFycyIsImlhdCI6MTcwNzcwMTk3OSwiZXhwIjoxNzA3NzAzNzc5fQ.YA32Jk6ESnj5kGoD-JYhScRJWTFKM_hHk4NguksZbEo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMWE5ODFlNy0wMTFkLTRmMTMtYjMxZC1hOGJjNmI0NzVmZjQiLCJlbWFpbCI6IjQ1ZG9sbGFyc0Byb2xsaW4uY29tIiwibmFtZSI6IjQ1ZG9sbGFycyIsImlhdCI6MTcwNzc0Njk2MiwiZXhwIjoxNzA3NzQ4NzYyfQ.wxJMQSomqmR4GJq1UzzEClCGyERWUSBTMgmljon4CA4
 Content-Type: application/json
 
 {
   "title": "Sample Guitar",
   "description": "Has he lost his mind? Can he see or is he blind?",
-  "additionDate": "2024-02-11T23:54:01.826Z",
   "photoUrl": "server/static/02/12/image.jpeg",
   "guitarType": "акустика",
   "article": "fender-telecaster-1234",
-  "stringsCount": 6,
-  "price": 985000
+  "stringsCount": 12,
+  "price": 400000
 }
 ###
 
