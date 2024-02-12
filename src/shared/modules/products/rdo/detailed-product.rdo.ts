@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose } from 'class-transformer';
 import { GuitarStringsCount, GuitarTypes, Product } from '../../../types';
-import { PRODUCT_AVAILABLE_VALUE } from '../product.const';
+import { PRODUCT_AVAILABLE_VALUE } from '../product/product.const';
 
 
 export class DetailedProductRDO implements Product {

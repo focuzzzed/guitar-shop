@@ -1,4 +1,4 @@
-import { Product, Entity, EntityIdType, GuitarTypes, GuitarStringsCount } from '../../types';
+import { Product, Entity, EntityIdType, GuitarTypes, GuitarStringsCount } from '../../../types';
 
 export class ProductEntity implements Product, Entity<EntityIdType> {
   public id?: string;

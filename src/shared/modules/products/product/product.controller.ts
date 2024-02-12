@@ -4,17 +4,17 @@ import {
   UseGuards
 } from '@nestjs/common';
 import { ProductService } from './product.service';
-import { ProductQuery } from './query/product.query';
-import { ProductWithPaginationRDO } from './rdo/product-with-pagination.rdo';
-import { fillDTO } from '../../helpers';
-import { CreateProductDTO } from './dto/create-product.dto';
-import { DetailedProductRDO } from './rdo/detailed-product.rdo';
+import { ProductQuery } from '../query/product.query';
+import { ProductWithPaginationRDO } from '../rdo/product-with-pagination.rdo';
+import { fillDTO } from '../../../helpers';
+import { CreateProductDTO } from '../dto/create-product.dto';
+import { DetailedProductRDO } from '../rdo/detailed-product.rdo';
 import { ApiHeader, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { UpdateProductDTO } from './dto/update-product.dto';
-import { JWTAuth } from '../../libs/guards';
-import { GuitarTypes, SortDirection } from '../../types';
+import { UpdateProductDTO } from '../dto/update-product.dto';
+import { JWTAuth } from '../../../libs/guards';
+import { GuitarTypes, SortDirection } from '../../../types';
 import { PRODUCT_AVAILABLE_VALUE } from './product.const';
-import { SortField } from '../../types/paginations/sort-field.enum';
+import { SortField } from '../../../types/paginations/sort-field.enum';
 
 @ApiTags('products')
 @Controller('products')

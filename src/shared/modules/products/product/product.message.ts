@@ -1,5 +1,5 @@
 import { PRODUCT_AVAILABLE_VALUE } from './product.const';
-import { GuitarTypes } from '../../types';
+import { GuitarTypes } from '../../../types';
 
 export const PRODUCT_VALIDATION_MESSAGE = {
   TITLE: {

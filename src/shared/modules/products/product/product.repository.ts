@@ -1,10 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { BasePostgresRepository, PrismaClientService } from '../../libs';
+import { Injectable } from '@nestjs/common';
+import { BasePostgresRepository, PrismaClientService } from '../../../libs';
 import { ProductEntity } from './product.entity';
-import { PaginationResult, Product } from '../../types';
-import { ProductQuery } from './query/product.query';
+import { PaginationResult, Product } from '../../../types';
+import { ProductQuery } from '../query/product.query';
 import { Prisma } from '@prisma/client';
-import { UpdateProductDTO } from './dto/update-product.dto';
+import { UpdateProductDTO } from '../dto/update-product.dto';
 
 @Injectable()
 export class ProductRepository extends BasePostgresRepository<ProductEntity, Product> {

@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { ProductQuery } from './query/product.query';
-import { PaginationResult } from '../../types';
+import { ProductQuery } from '../query/product.query';
+import { PaginationResult } from '../../../types';
 import { ProductRepository } from './product.repository';
 import { ProductEntity } from './product.entity';
-import { CreateProductDTO } from './dto/create-product.dto';
-import { UpdateProductDTO } from './dto/update-product.dto';
+import { CreateProductDTO } from '../dto/create-product.dto';
+import { UpdateProductDTO } from '../dto/update-product.dto';
 
 @Injectable()
 export class ProductService {

@@ -2,9 +2,9 @@ import { GuitarStringsCount, GuitarTypes } from '../../../types';
 import { IsDateString, IsIn, IsNotEmpty, IsNumber,
   IsOptional, Max, MaxLength, Min, MinLength
 } from 'class-validator';
-import { PRODUCT_AVAILABLE_VALUE } from '../product.const';
-import { PRODUCT_VALIDATION_MESSAGE } from '../product.message';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { PRODUCT_AVAILABLE_VALUE } from '../product/product.const';
+import { PRODUCT_VALIDATION_MESSAGE } from '../product/product.message';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 
 export class UpdateProductDTO {
   @ApiPropertyOptional({
