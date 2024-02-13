@@ -1,60 +1,144 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Как работать над проектом
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Окружение
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Для удобства работы над проектом используются инструменты из **Node.js** и **npm**. Все необходимые настройки произведены. Убедитесь, что на рабочем компьютере установлен актуальный LTS релиз Node.js**. Актуальная версия **Node.js** указана в файле `package.json` в поле `node`.
 
-## Description
+## Запуск проекта
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Убедитесь, что на рабочем компьютере установлен актуальный LTS релиз **Node.js**. Актуальная версия **Node.js** указана в файле `package.json` в поле `node`.
 
-## Installation
+### Установите зависимости
+
+Выполните команду
 
 ```bash
-$ npm install
+npm install
 ```
 
-## Running the app
+### Настройте переменные окружения
+
+В корне проекта находится файл `.env.example`. Скопируйте его содержимое в файл `.env` и настройте значения переменных.
+
+#### Список переменных окружения
+
+##### База данных PostgreSQL
+
+- `POSTGRES_USER=admin` - Имя пользователя для подключения к базе данных PostgreSQL.
+- `POSTGRES_PASSWORD=test` - Пароль для подключения к базе данных PostgreSQL.
+- `POSTGRES_DB=guitar_shop` - Имя базы данных в PostgreSQL.
+
+##### PgAdmin
+
+- `PGADMIN_DEFAULT_EMAIL=user@local.com` - E-mail адрес для входа в PgAdmin.
+- `PGADMIN_DEFAULT_PASSWORD=test` - Пароль для входа в PgAdmin.
+
+##### JWT
+
+- `JWT_ACCESS_SECRET=supersecret1212` - Секретный ключ для создания JWT токенов.
+- `JWT_ACCESS_EXPIRES_IN=30m` - Время жизни JWT токена.
+- `JWT_ALGORITHM=HS256` - Алгоритм, используемый для создания JWT токенов.
+
+##### Сервер приложения
+
+- `PORT=3333` - Порт, на котором будет запущен сервер приложения.
+
+##### Почта
+
+- `MAIL_SMTP_HOST=localhost` - Имя хоста SMTP-сервера для отправки электронной почты.
+- `MAIL_SMTP_PORT=8025` - Порт SMTP-сервера для отправки электронной почты.
+- `MAIL_USER_NAME=admin` - Имя пользователя для SMTP-сервера.
+- `MAIL_USER_PASSWORD=test` - Пароль для SMTP-сервера.
+- `MAIL_FROM=guitar-shop@gmail.local` - E-mail адрес отправителя для электронной почты.
+
+##### Загрузка файлов
+
+- `UPLOAD_DIRECTORY=D:\Projects\guitar-shop\src\shared\modules\products\file\uploads` - Путь к директории, в которую будут загружаться файлы.
+
+### Разверните базу данных PostgreSQL
+
+В проекте используется база данных **PostgreSQL** версии 14.
+
+Если вы используете Docker, воспользуйтесь файлом `docker-compose.yml`, расположенным в корне проекта, для быстрого разворачивания базы данных.
+
+Пример разворачивания:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+docker compose \
+--file ./docker-compose.yml \
+--env-file ./app.env \
+--project-name "guitar-shop" \
+up \
+-d
 ```
 
-## Support
+### Наполните базу данных
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Сгенерируйте нужное количество товаров. Для этого необходимо указать их количество и строку подключения:
 
-## Stay in touch
+```bash
+npm run ./src/main.cli.ts -- --generate 50 postgres://admin:test@localhost:5432/guitar_shop                                                                                                                                                                                                                                       
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Запустите проект
 
-## License
+Выполните команду
 
-Nest is [MIT licensed](LICENSE).
+```bash
+npm start
+```
+
+## Сценарии
+
+В `package.json` предопределены несколько сценариев.
+
+### Команды для работы с Nest.js
+- `start` - Компилирует проект в папку dist и запускает его.
+- `start:dev` - Запускает приложение в режиме разработки с возможностью автоматического перезапуска при изменении файлов.
+- `start:debug` - Запускает приложение в режиме отладки с возможностью автоматического перезапуска при изменении файлов.
+- `start:prod` - Запускает скомпилированное приложение в продакшене.
+- `lint` - Проверяет код на соответствие правилам линтинга и пытается автоматически исправить ошибки, если это возможно.
+- `ts` - Запускает TypeScript-файлы с помощью ts-node.
+
+### Команды для работы с базой данных
+
+- `db:generate` - Генерирует клиент Prisma на основе схемы базы данных.
+- `db:reset` - Откатывает все миграции в базе данных.
+- `db:lint` - Проверяет схему базы данных на наличие ошибок.
+- `db:migrate` - Применяет новые миграции к базе данных.
+
+## Примеры использования команд
+
+### Запустить сервер в режиме разработки
+
+```bash
+npm run start:dev
+```
+
+### Проверить линтером
+
+```bash
+npm run lint
+```
+
+### Запустить ts-модуль
+
+```bash
+npm run ts ./path/to/your/file.ts
+```
+
+#### Запустить ts-модуль без компиляции
+
+```bash
+npm run ts -- <Путь к модулю с ts-кодом>
+```
+
+Пакет `ts-node` позволяет выполнить TS-код в Node.js без предварительной компиляции. Используется только на этапе разработки.
+
+#### Запустить проект
+
+```bash
+npm start
+```
+
+В процессе запуска проекта будет выполнен процесс «Сборки проекта» и запуска результирующего кода.
