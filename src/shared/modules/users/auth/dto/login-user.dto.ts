@@ -1,5 +1,5 @@
 import { IsEmail, IsNotEmpty, MaxLength, MinLength } from 'class-validator';
-import { USER_AVAILABLE_VALUE } from '../../user/user.const';
+import { USER_AVAILABLE_VALUE } from '../../user';
 import { AUTH_VALIDATION_MESSAGE } from '../auth.message';
 import { ApiProperty } from '@nestjs/swagger';
 

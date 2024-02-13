@@ -1,10 +1,10 @@
 import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
-import { UserRepository } from '../user/user.repository';
+import { UserRepository } from '../user';
 import { CreateUserDTO } from './dto/create-user.dto';
-import { UserEntity } from '../user/user.entity';
+import { UserEntity } from '../user';
 import { LoginUserDTO } from './dto/login-user.dto';
 import { JwtService } from '@nestjs/jwt';
-import { MailService } from '../mail/mail.service';
+import { MailService } from '../mail';
 
 @Injectable()
 export class AuthService {

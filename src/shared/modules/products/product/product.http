@@ -1,10 +1,10 @@
 #Get posts with pagination
-GET http://localhost:3333/products?guitarTypes[]=укулеле&sortField=additionDate&sortDirection=desc HTTP/1.1
+GET http://localhost:3333/products?sortField=additionDate&sortDirection=desc HTTP/1.1
 ###
 
 #Product creation
 POST http://localhost:3333/products HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMWE5ODFlNy0wMTFkLTRmMTMtYjMxZC1hOGJjNmI0NzVmZjQiLCJlbWFpbCI6IjQ1ZG9sbGFyc0Byb2xsaW4uY29tIiwibmFtZSI6IjQ1ZG9sbGFycyIsImlhdCI6MTcwNzc1MjkwNSwiZXhwIjoxNzA3NzU0NzA1fQ.3Gqpju4G7gQlwCfj1JUedVLX1sKmRTUF7I4N8yJ-Znc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMzZiNmI5OS1jMmIwLTRiYmMtOWU3Yi05YWFmYzhjMWViZjIiLCJlbWFpbCI6ImFraXJhZHJpdmVyQGJpa2UuY29tIiwibmFtZSI6ImFraXJhIiwiaWF0IjoxNzA3ODM0MjAzLCJleHAiOjE3MDc4MzYwMDN9.OuPg-AZ6FxfeWIjsNPzrU2GVju701uC9JcyVUhGrB3s
 Content-Type: application/json
 
 {
@@ -19,13 +19,13 @@ Content-Type: application/json
 ###
 
 #Show product by id
-GET http://localhost:3333/products/5bfe7b51-32dd-4331-920d-4a8c47a426e3 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMWE5ODFlNy0wMTFkLTRmMTMtYjMxZC1hOGJjNmI0NzVmZjQiLCJlbWFpbCI6IjQ1ZG9sbGFyc0Byb2xsaW4uY29tIiwibmFtZSI6IjQ1ZG9sbGFycyIsImlhdCI6MTcwNzc1MjkwNSwiZXhwIjoxNzA3NzU0NzA1fQ.3Gqpju4G7gQlwCfj1JUedVLX1sKmRTUF7I4N8yJ-Znc
+GET http://localhost:3333/products/5eba2eb4-5a54-484f-8880-c3e70e30c6f7 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMzZiNmI5OS1jMmIwLTRiYmMtOWU3Yi05YWFmYzhjMWViZjIiLCJlbWFpbCI6ImFraXJhZHJpdmVyQGJpa2UuY29tIiwibmFtZSI6ImFraXJhIiwiaWF0IjoxNzA3ODM0MjAzLCJleHAiOjE3MDc4MzYwMDN9.OuPg-AZ6FxfeWIjsNPzrU2GVju701uC9JcyVUhGrB3s
 ###
 
 #Product update
-PATCH http://localhost:3333/products/aa8543a2-1bbf-483f-8e87-1acc2e51298f HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMWE5ODFlNy0wMTFkLTRmMTMtYjMxZC1hOGJjNmI0NzVmZjQiLCJlbWFpbCI6IjQ1ZG9sbGFyc0Byb2xsaW4uY29tIiwibmFtZSI6IjQ1ZG9sbGFycyIsImlhdCI6MTcwNzc3MTMwMywiZXhwIjoxNzA3NzczMTAzfQ.WWSVTclRWreOoFAJZbKxYw9G8hOgFDsuYL2ggTEhzjY
+PATCH http://localhost:3333/products/5eba2eb4-5a54-484f-8880-c3e70e30c6f7 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMzZiNmI5OS1jMmIwLTRiYmMtOWU3Yi05YWFmYzhjMWViZjIiLCJlbWFpbCI6ImFraXJhZHJpdmVyQGJpa2UuY29tIiwibmFtZSI6ImFraXJhIiwiaWF0IjoxNzA3ODM0MjAzLCJleHAiOjE3MDc4MzYwMDN9.OuPg-AZ6FxfeWIjsNPzrU2GVju701uC9JcyVUhGrB3s
 Content-Type: application/json
 
 {
@@ -34,6 +34,6 @@ Content-Type: application/json
 ###
 
 #Product remove
-DELETE http://localhost:3333/products/5bfe7b51-32dd-4331-920d-4a8c47a426e3 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMWE5ODFlNy0wMTFkLTRmMTMtYjMxZC1hOGJjNmI0NzVmZjQiLCJlbWFpbCI6IjQ1ZG9sbGFyc0Byb2xsaW4uY29tIiwibmFtZSI6IjQ1ZG9sbGFycyIsImlhdCI6MTcwNzc1MjkwNSwiZXhwIjoxNzA3NzU0NzA1fQ.3Gqpju4G7gQlwCfj1JUedVLX1sKmRTUF7I4N8yJ-Znc
+DELETE http://localhost:3333/products/5eba2eb4-5a54-484f-8880-c3e70e30c6f7 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMzZiNmI5OS1jMmIwLTRiYmMtOWU3Yi05YWFmYzhjMWViZjIiLCJlbWFpbCI6ImFraXJhZHJpdmVyQGJpa2UuY29tIiwibmFtZSI6ImFraXJhIiwiaWF0IjoxNzA3ODM0MjAzLCJleHAiOjE3MDc4MzYwMDN9.OuPg-AZ6FxfeWIjsNPzrU2GVju701uC9JcyVUhGrB3s
 ###

@@ -8,5 +8,5 @@ Content-Disposition: form-data; name="file"; filename="123.jpg"
 ###
 
 #Get uploaded file
-GET http://localhost:3333/static/2024/02/95b44142-7045-467b-9916-eb50ea80f024.jpg HTTP/1.1
+GET http://localhost:3333/static/2024/02/23f76b83-c0a3-41bf-96c0-1fd2a72f25bd.jpg HTTP/1.1
 ###

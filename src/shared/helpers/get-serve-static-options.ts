@@ -1,5 +1,5 @@
 import { ConfigService } from '@nestjs/config';
-import { SERVE_ROOT } from '../modules/products/file/file.const';
+import { SERVE_ROOT } from '../modules/products/file';
 import { ServeStaticModuleAsyncOptions } from '@nestjs/serve-static';
 
 export function getServeStaticOptions(): ServeStaticModuleAsyncOptions {

@@ -6,7 +6,7 @@ import * as dayjs from 'dayjs';
 import { join } from 'node:path';
 import {ensureDir, writeFile } from 'fs-extra';
 import { randomUUID } from 'node:crypto';
-import { AVAILABLE_FILE_EXTENSIONS, SERVE_ROOT } from './file.const';
+import { AVAILABLE_FILE_EXTENSIONS } from './file.const';
 import { getFileExtension } from '../../../helpers';
 
 @Injectable()
@@ -51,7 +51,7 @@ export class FileService {
       await ensureDir(join(uploadDirectory, subDirectory));
       await writeFile(path, file.buffer);
 
-      return join(SERVE_ROOT, subDirectory, filename);
+      return join(subDirectory, filename);
     } catch(err) {
       this.logger.error(`Error while saving file: ${err.message}`);
       throw new Error(`Can't save file ${file.originalname}`);

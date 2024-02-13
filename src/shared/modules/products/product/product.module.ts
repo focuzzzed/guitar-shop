@@ -6,7 +6,7 @@ import { ProductController } from './product.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { getJWTOptions } from '../../../helpers';
-import { FileModule } from '../file/file.module';
+import { FileModule } from '../file';
 
 @Module({
   imports: [
