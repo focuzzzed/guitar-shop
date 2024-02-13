@@ -1,1 +1,5 @@
-export const App = () => <h1>World!</h1>;
+import { RegisterPage } from '../../pages/register/register-page.tsx';
+
+export const App = () => {
+  return (<RegisterPage />)
+};
