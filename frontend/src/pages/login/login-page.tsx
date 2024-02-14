@@ -17,5 +17,5 @@ export const LoginPage = () => {
       </main>
       <Footer />
     </>
-  )
-}
+  );
+};

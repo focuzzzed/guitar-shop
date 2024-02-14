@@ -18,15 +18,15 @@ export const AuthForm: FC<AuthFormProps> = ({ isRegister }) => {
 
   const handleEyeMouseDown = () => {
     if(passwordFieldRef.current) {
-      passwordFieldRef.current.type = "text";
+      passwordFieldRef.current.type = 'text';
     }
-  }
+  };
 
   const handleEyeMouseUp = () => {
     if(passwordFieldRef.current) {
-      passwordFieldRef.current.type = "password";
+      passwordFieldRef.current.type = 'password';
     }
-  }
+  };
 
   return (
     <form method="post" action="/">
@@ -41,11 +41,11 @@ export const AuthForm: FC<AuthFormProps> = ({ isRegister }) => {
             value={formData.name}
             onChange={(evt) => setFormData({
               ...formData,
-              name: evt.target.value,
+              name: evt.target.value
             })}
             required
           />
-          <p className="input-login__error">Заполните поле</p>
+          <p className="input-login__error" style={{ visibility: !formData.name.length ? 'visible' : 'hidden' }}>Заполните поле</p>
         </div>
       )}
 
@@ -59,11 +59,12 @@ export const AuthForm: FC<AuthFormProps> = ({ isRegister }) => {
           value={formData.email}
           onChange={(evt) => setFormData({
             ...formData,
-            email: evt.target.value,
+            email: evt.target.value
           })}
           required
         />
-        <p className="input-login__error">Заполните поле</p>
+        <p className="input-login__error" style={{ visibility: !formData.email.length ? 'visible' : 'hidden' }}>Заполните поле</p>
+
       </div>
 
       <div className="input-login">
@@ -92,12 +93,13 @@ export const AuthForm: FC<AuthFormProps> = ({ isRegister }) => {
             <svg width="14" height="8" aria-hidden="true"><use xlinkHref="#icon-eye"></use></svg>
           </button>
         </span>
-        <p className="input-login__error">Заполните поле</p>
+        <p className="input-login__error" style={{visibility: !formData.password.length ? 'visible' : 'hidden'}}>Заполните поле</p>
       </div>
       <button
         className="button login__button button--medium"
         type="submit"
-      >{isRegister ? 'Зарегистрироваться' : 'Войти'}</button>
+      >{isRegister ? 'Зарегистрироваться' : 'Войти'}
+      </button>
     </form>
-  )
-}
+  );
+};
