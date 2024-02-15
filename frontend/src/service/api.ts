@@ -1,16 +1,7 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { StatusCodes } from 'http-status-codes';
 import { toast } from 'react-toastify';
 import { Token } from './token.ts';
-
-const BACKEND_URL = 'http://localhost:3333';
-const REQUEST_TIME = 5000;
-
-const StatusCodeMapping: Record<number, boolean> = {
-  [StatusCodes.BAD_REQUEST]: true,
-  [StatusCodes.UNAUTHORIZED]: true,
-  [StatusCodes.NOT_FOUND]: true,
-};
+import { BACKEND_URL, REQUEST_TIME, StatusCodeMapping } from './const.ts';
 
 type DetailMessageType = {
   type: string;

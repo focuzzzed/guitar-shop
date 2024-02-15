@@ -1,5 +1,3 @@
-import { RegisterPage } from '../../pages/register/register-page.tsx';
+import { AddItemPage } from '../../pages/add-item-page/add-item-page.tsx';
 
-export const App = () => {
-  return (<RegisterPage />);
-};
+export const App = () => (<AddItemPage />);

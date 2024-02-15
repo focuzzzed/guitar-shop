@@ -5,7 +5,7 @@ export type UserInfo = {
   email: string;
 }
 
-export type InitialUserState = {
+export type UserState = {
   authStatus: AuthorizationStatus;
   userInfo: UserInfo;
   isLoading: boolean;

@@ -31,7 +31,7 @@ export class DetailedProductRDO implements Product {
     example: '2024-02-11T23:54:01.826Z'
   })
   @Expose()
-  public additionDate?: Date;
+  public additionDate?: string;
 
   @ApiProperty({
     description: 'Guitar image path',

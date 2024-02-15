@@ -1,10 +1,10 @@
 import { AuthorizationStatus, NameSpace } from '../../types/enums.ts';
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { checkAuth, loginUser, registerUser } from '../../service/api-actions.ts';
 import { Token } from '../../service/token.ts';
-import { InitialUserState, UserInfo } from '../../types/users.types.ts';
+import { UserState, UserInfo } from '../../types/users.types.ts';
 
-export const initialUserState: InitialUserState = {
+export const initialUserState: UserState = {
   authStatus: AuthorizationStatus.Unknown,
   userInfo: {
     name: '',
@@ -17,7 +17,7 @@ export const userProcess = createSlice({
   name: NameSpace.User,
   initialState: initialUserState,
   reducers: {
-    loadUserData: (state, action: {payload: UserInfo}) => {
+    loadUserData: (state, action: PayloadAction<UserInfo>) => {
       state.userInfo = action.payload;
     },
     logoutUser: (state) => {
