@@ -53,10 +53,10 @@ export const userProcess = createSlice({
       .addCase(registerUser.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(loginUser.fulfilled, (state) => {
+      .addCase(registerUser.fulfilled, (state) => {
         state.isLoading = false;
       })
-      .addCase(loginUser.rejected, (state) => {
+      .addCase(registerUser.rejected, (state) => {
         state.isLoading = false;
       });
   }

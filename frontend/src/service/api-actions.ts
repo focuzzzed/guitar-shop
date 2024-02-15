@@ -7,7 +7,7 @@ import { Token } from './token.ts';
 import { toast } from 'react-toastify';
 import { UserInfo, UserLoginInfo, UserLoginResponse, UserRegisterInfo } from '../types/users.types.ts';
 import {
-  DetailedProduct, Product,
+  DetailedProduct,
   ProductsQueryParams,
   ProductsWithPagination,
   UpdateProductTransferObject
@@ -88,8 +88,8 @@ export const fetchCurrentProduct = createAsyncThunk<void, string, AsyncThunkConf
 export const updateCurrentProduct = createAsyncThunk<void, UpdateProductTransferObject, AsyncThunkConfig>(
   Action.UPDATE_CURRENT_PRODUCT,
   async (updateProductDTO, { dispatch, extra: api }) => {
-    const { data: updatedProductCard } = await api.patch<Product>(`http://localhost:3333/products/${ updateProductDTO.id }`, updateProductDTO);
-    dispatch(updateProduct(updatedProductCard));
+    const { data: updatedProduct } = await api.patch<DetailedProduct>(`http://localhost:3333/products/${ updateProductDTO.id }`, updateProductDTO);
+    dispatch(updateProduct(updatedProduct));
   }
 );
 

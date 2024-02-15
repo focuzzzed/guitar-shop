@@ -11,18 +11,17 @@ export const AddItemPage = () => {
           <div className="container">
             <h1 className="add-item__title">Новый товар</h1>
             <ul className="breadcrumbs">
-            <li className="breadcrumbs__item"><a className="link" href="./main.html">Вход</a>
-              </li>
+              <li className="breadcrumbs__item"><a className="link" href="./main.html">Вход</a></li>
               <li className="breadcrumbs__item"><a className="link">Товары</a>
               </li>
               <li className="breadcrumbs__item"><a className="link">Новый товар</a>
-            </li>
+              </li>
             </ul>
-             <ItemForm product={null}/>
+            <ItemForm product={null}/>
           </div>
         </section>
       </main>
       <Footer />
     </>
-  )
-}
+  );
+};

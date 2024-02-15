@@ -10,3 +10,13 @@ export const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.UNAUTHORIZED]: true,
   [StatusCodes.NOT_FOUND]: true,
 };
+
+export const Paths = {
+  Login: '/',
+  Register: '/register',
+  Error: '*',
+  Products: '/products',
+  Product: '/products/:id',
+  Create: '/products/new',
+  Update: '/products/:id/edit'
+};
