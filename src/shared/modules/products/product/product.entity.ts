@@ -5,7 +5,6 @@ export class ProductEntity implements Product, Entity<EntityIdType> {
   public title: string;
   public description: string;
   public additionDate?: Date;
-  public updatedAt?: Date;
   public photoUrl: string;
   public guitarType: GuitarTypes;
   public article: string;
@@ -17,7 +16,6 @@ export class ProductEntity implements Product, Entity<EntityIdType> {
     this.title = data.title;
     this.description = data.description;
     this.additionDate = data.additionDate;
-    this.updatedAt = data.updatedAt;
     this.photoUrl = data.photoUrl;
     this.guitarType = data.guitarType;
     this.article = data.article;
@@ -33,7 +31,6 @@ export class ProductEntity implements Product, Entity<EntityIdType> {
       title: this.title,
       description: this.description,
       additionDate: this.additionDate,
-      updatedAt: this.updatedAt,
       photoUrl: this.photoUrl,
       guitarType: this.guitarType,
       article: this.article,

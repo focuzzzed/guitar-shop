@@ -3,9 +3,9 @@ POST http://localhost:3333/auth/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "akira",
-  "email": "akiradriver@bike.com",
-  "password": "wroomwroom"
+  "name": "SANJI",
+  "email": "sanji@pirate.com",
+  "password": "naminami"
 }
 ###
 
@@ -14,12 +14,12 @@ POST http://localhost:3333/auth/login HTTP/1.1
 Content-Type: application/json
 
 {
-"email": "akiradriver@bike.com",
-"password": "wroomwroom"
+"email": "sanji@pirate.com",
+"password": "naminami"
 }
 ###
 
 # Check auth status
 GET http://localhost:3333/auth/status HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMzZiNmI5OS1jMmIwLTRiYmMtOWU3Yi05YWFmYzhjMWViZjIiLCJlbWFpbCI6ImFraXJhZHJpdmVyQGJpa2UuY29tIiwibmFtZSI6ImFraXJhIiwiaWF0IjoxNzA3ODM0MjAzLCJleHAiOjE3MDc4MzYwMDN9.OuPg-AZ6FxfeWIjsNPzrU2GVju701uC9JcyVUhGrB3s
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlOTg4NDM0Zi1mMDJkLTQyYWQtYTZiOS04YTIxNjU5MWYwMjEiLCJlbWFpbCI6InNhbmppQHBpcmF0ZS5jb20iLCJuYW1lIjoiU0FOSkkiLCJpYXQiOjE3MDgwMzc3OTksImV4cCI6MTcwODAzOTU5OX0.y3RdG3-nhd9DqO0eqhyVIWmWCiHJq3VZ2T3119cow5M
 ###

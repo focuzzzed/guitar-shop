@@ -5,7 +5,7 @@ export interface Product {
   id?: string;
   title: string;
   description: string;
-  additionDate?: string;
+  additionDate?: Date;
   photoUrl: string;
   guitarType: GuitarTypes;
   article: string;
