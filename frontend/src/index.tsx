@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './components/app/app.tsx';
 import { ToastContainer } from 'react-toastify';
@@ -12,10 +11,10 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-    <Provider store={ store }>
-      <BrowserRouter>
-        <ToastContainer />
-        <App />
-      </BrowserRouter>
-    </Provider>
+  <Provider store={ store }>
+    <BrowserRouter>
+      <ToastContainer />
+      <App />
+    </BrowserRouter>
+  </Provider>
 );

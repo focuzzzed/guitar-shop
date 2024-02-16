@@ -16,7 +16,7 @@ import { EditItemPage } from '../../pages/edit-item-page/edit-item-page.tsx';
 
 export const App = () => {
   const dispatch = useAppDispatch();
-  //TODO: Написать Дописать страницы
+
   useEffect(() => {
     dispatch(fetchProducts({}));
     dispatch(checkAuth());
@@ -64,7 +64,7 @@ export const App = () => {
         <Route
           path={Paths.Products}
           element={
-          <ProductsListPage/>
+            <ProductsListPage/>
           }
         />
 

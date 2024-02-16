@@ -68,12 +68,10 @@ export const loginUser = createAsyncThunk<void, UserLoginInfo, AsyncThunkConfig>
   }
 );
 
-export const postImage = createAsyncThunk<string, File, AsyncThunkConfig>(
+export const postImage = createAsyncThunk<string, FormData, AsyncThunkConfig>(
   Action.UPLOAD_PHOTO,
   async (file, { extra: api }) => {
-    const { data: imagePath } = await api.post<string>('http://localhost:3333/files/upload', file, {
-      'content-type': 'multipart/form-data'
-    });
+    const { data: imagePath } = await api.post<string>('http://localhost:3333/files/upload', file);
     return imagePath;
   }
 );

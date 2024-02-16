@@ -26,5 +26,5 @@ export type UserRegisterInfo = {
 export type UserLoginResponse = {
   name: string;
   email: string;
-  token: string;
+  accessToken: string;
 };

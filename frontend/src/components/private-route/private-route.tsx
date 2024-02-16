@@ -1,14 +1,12 @@
-import React from 'react';
 import { Spinner } from '../spinner/spinner.tsx';
-import { AuthorizationStatus, NameSpace } from '../../types/enums.ts';
-import { State, useAppSelector } from '../../hooks/use-app-selector.ts';
+import { AuthorizationStatus } from '../../types/enums.ts';
+import { useAppSelector } from '../../hooks/use-app-selector.ts';
 import { Navigate } from 'react-router-dom';
-import { Paths } from 'tsconfig-paths/lib/mapping-entry';
 import { getAuthStatus } from '../../store/user-process/user-process.selectors.ts';
 
 type PrivateRouteProps = {
   restrictedFor: AuthorizationStatus;
-  redirectTo: Paths;
+  redirectTo: string;
   children: JSX.Element;
 }
 

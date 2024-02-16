@@ -12,16 +12,10 @@ export const ProductSortForm: FC<ProductSortFormProps> = ({ query, setQuery }) =
   const handleSortFieldChange = (evt: ChangeEvent<HTMLInputElement>) => {
     setQuery({
       ...query,
-      sortField: evt.target.dataset.sortField,
-    })
-  }
+      sortField: evt.target.dataset.sortField as SortField,
+    });
+  };
 
-  const handleSortDirectionChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    setQuery({
-      ...query,
-      sortDirection: evt.target.dataset.sortDirection,
-    })
-  }
 
   return (
     <div className="catalog-sort">

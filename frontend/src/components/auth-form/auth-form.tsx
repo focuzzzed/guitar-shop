@@ -1,20 +1,18 @@
-import { FC, useRef, useState } from 'react';
+import { FC, FormEvent, useRef, useState } from 'react';
 import { useAppDispatch } from '../../hooks/use-app-dispatch.ts';
 import { loginUser, registerUser } from '../../service/api-actions.ts';
-import { State, useAppSelector } from '../../hooks/use-app-selector.ts';
-import { NameSpace } from '../../types/enums.ts';
-import { useHistory, useNavigate } from 'react-router-dom';
-import { Paths } from '../../service/const.ts';
+import { useAppSelector } from '../../hooks/use-app-selector.ts';
+import { useNavigate } from 'react-router-dom';
 import { getUserLoadingStatus } from '../../store/user-process/user-process.selectors.ts';
 
 type AuthFormProps = {
-  isRegister: boolean
+  isRegister: boolean;
 }
 
 type FormData = {
-  name: string,
-  email: string,
-  password: string
+  name: string;
+  email: string;
+  password: string;
 }
 
 export const AuthForm: FC<AuthFormProps> = ({ isRegister }) => {
@@ -38,15 +36,17 @@ export const AuthForm: FC<AuthFormProps> = ({ isRegister }) => {
     }
   };
 
-  const handleAuthSubmit = (evt) => {
+  const handleAuthSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     if(isRegister) {
       dispatch(registerUser(formData))
-        .then(navigate('../', { replace: true }));
+        .then(() => {
+          navigate('../', { replace: true });
+        });
     } else {
       dispatch(loginUser(formData));
     }
-  }
+  };
 
   return (
     <form

@@ -1,6 +1,5 @@
-import { State, useAppSelector } from '../../hooks/use-app-selector.ts';
-import { NameSpace } from '../../types/enums.ts';
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { useAppSelector } from '../../hooks/use-app-selector.ts';
+import { useEffect, useRef, useState } from 'react';
 import { useAppDispatch } from '../../hooks/use-app-dispatch.ts';
 import { fetchCurrentProduct } from '../../service/api-actions.ts';
 import { useParams } from 'react-router-dom';
@@ -24,7 +23,7 @@ export const ProductCard = () => {
     }
   }, [dispatch, params]);
 
-  const handleTabClick = (evt: ChangeEvent<HTMLInputElement>) => {
+  const handleTabClick = (evt) => {
     const isDescriptionTab = evt.target.dataset.name === 'description';
     if (isDescriptionTab) {
       setActiveTab(true);

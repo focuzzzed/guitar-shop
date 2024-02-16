@@ -3,7 +3,7 @@ import { DetailedProduct } from '../../types/products.types.ts';
 import { GuitarStringsCount, GuitarTypes } from '../../types/enums.ts';
 import { BACKEND_PHOTO_FIELD_NAME } from '../../service/const.ts';
 import { useAppDispatch } from '../../hooks/use-app-dispatch.ts';
-import { postImage, postProduct, updateCurrentProduct } from '../../service/api-actions.ts';
+import { postImage } from '../../service/api-actions.ts';
 import * as dayjs from 'dayjs';
 
 export type ItemFormProps = {
@@ -13,6 +13,7 @@ export type ItemFormProps = {
 
 export const ItemForm: FC<ItemFormProps> = ({ product }) => {
   const initialProduct: DetailedProduct = {
+    id: '',
     title: '',
     description: '',
     additionDate: dayjs().format('DD.MM.YYYY'),
@@ -27,9 +28,6 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
   const [productPhoto, setProductPhoto] = useState<File>();
   const inputFileRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
-  const onSubmitAction = product
-    ? updateCurrentProduct
-    : postProduct;
 
   const handleUploadButtonClick = () => {
     if(inputFileRef.current) {

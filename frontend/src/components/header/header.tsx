@@ -1,5 +1,5 @@
-import { State, useAppSelector } from '../../hooks/use-app-selector.ts';
-import { AuthorizationStatus, NameSpace } from '../../types/enums.ts';
+import { useAppSelector } from '../../hooks/use-app-selector.ts';
+import { AuthorizationStatus } from '../../types/enums.ts';
 import { Link } from 'react-router-dom';
 import { Paths } from '../../service/const.ts';
 import { getAuthStatus, getUser } from '../../store/user-process/user-process.selectors.ts';
