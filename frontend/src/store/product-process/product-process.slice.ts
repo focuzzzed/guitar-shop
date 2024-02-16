@@ -30,6 +30,9 @@ export const productProcess = createSlice({
         ? action.payload
         : product
       );
+    },
+    removeProduct: (state, action: PayloadAction<string>) => {
+      state.pagination.entities = state.pagination.entities.filter((product) => product.id !== action.payload);
     }
   },
   extraReducers(builder) {
@@ -67,5 +70,6 @@ export const productProcess = createSlice({
 export const {
   loadProducts,
   loadCurrentProduct,
-  updateProduct
+  updateProduct,
+  removeProduct,
 } = productProcess.actions;

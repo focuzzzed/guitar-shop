@@ -1,7 +1,7 @@
 import { GuitarStringsCount, GuitarTypes, SortDirection, SortField } from './enums.ts';
 
 export type DetailedProduct = {
-  id?: string;
+  id: string;
   title: string;
   description: string;
   additionDate?: string;

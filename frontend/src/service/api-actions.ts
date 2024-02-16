@@ -13,7 +13,14 @@ import {
   UpdateProductTransferObject
 } from '../types/products.types.ts';
 import { transformToQueryString } from '../utils.ts';
-import { loadCurrentProduct, loadProducts, updateProduct } from '../store/product-process/product-process.slice.ts';
+import {
+  loadCurrentProduct,
+  loadProducts,
+  removeProduct,
+  updateProduct
+} from '../store/product-process/product-process.slice.ts';
+import { Navigate } from 'react-router-dom';
+import { Paths } from './const.ts';
 
 type AsyncThunkConfig = {
   dispatch: AppDispatch;
@@ -29,7 +36,8 @@ export const Action = {
   FETCH_PRODUCTS: 'PRODUCT/fetchProducts',
   FETCH_CURRENT_PRODUCT: 'PRODUCT/fetchCurrentProduct',
   UPDATE_CURRENT_PRODUCT: 'PRODUCT/updateCurrentProduct',
-  CREATE_PRODUCT: 'PRODUCT/createProduct'
+  CREATE_PRODUCT: 'PRODUCT/createProduct',
+  DELETE_PRODUCT: 'PRODUCT/deleteProduct',
 };
 
 export const checkAuth = createAsyncThunk<void, undefined, AsyncThunkConfig>(
@@ -45,7 +53,7 @@ export const registerUser = createAsyncThunk<void, UserRegisterInfo, AsyncThunkC
   async ({ name, email, password }, { extra: api }) => {
     const { data: userData } = await api.post<UserInfo>('http://localhost:3333/auth/login', { name, email, password });
     toast.success(`${ userData.name }, thank you for registering! Login info has been sent to ${ userData.email }`);
-    //TODO: Роут на логин
+    Navigate({to: Paths.Login});
   }
 );
 
@@ -98,6 +106,15 @@ export const postProduct = createAsyncThunk<void, DetailedProduct, AsyncThunkCon
   async (createProductDTO, { dispatch, extra: api }) => {
     const { data: createdProduct } = await api.post<DetailedProduct>('http://localhost:3333/products/', createProductDTO);
     dispatch(loadCurrentProduct(createdProduct));
-    //TODO:Роут на карточку созданного товара
+    Navigate({to: `${Paths.Products}/${createdProduct.id}`});
+  }
+);
+
+export const deleteProduct = createAsyncThunk<void, string, AsyncThunkConfig>(
+  Action.DELETE_PRODUCT,
+  async (id, { dispatch, extra: api }) => {
+    await api.delete<DetailedProduct>(`http://localhost:3333/products/${id}`);
+    dispatch(removeProduct(id));
+    toast.success(`Product with id ${id} successfully deleted`);
   }
 );

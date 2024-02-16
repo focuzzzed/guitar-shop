@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards, Request, HttpStatus } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards, Request, HttpStatus, HttpCode } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { fillDTO } from '../../../helpers';
@@ -43,6 +43,7 @@ export class AuthController {
     status: HttpStatus.UNAUTHORIZED,
     description: 'Password or login is wrong.'
   })
+  @HttpCode(HttpStatus.OK)
   @Post('/login')
   public async login(@Body() dto: LoginUserDTO) {
     const verifiedUser = await this.authService.verify(dto);

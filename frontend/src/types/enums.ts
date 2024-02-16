@@ -25,6 +25,13 @@ export enum GuitarStringsCount{
   TwelveString = 12,
 }
 
+export enum CrumbName{
+  Login = 'Вход',
+  Create = 'Новый товар',
+  Products = 'Товары',
+  Product = 'Товар',
+}
+
 export enum SortDirection {
   Ascending = 'asc',
   Descending = 'desc',

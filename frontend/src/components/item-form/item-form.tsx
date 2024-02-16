@@ -4,7 +4,7 @@ import { GuitarStringsCount, GuitarTypes } from '../../types/enums.ts';
 import { BACKEND_PHOTO_FIELD_NAME } from '../../service/const.ts';
 
 export type ItemFormProps = {
-  product: DetailedProduct | null;
+  product?: DetailedProduct;
 }
 
 
@@ -19,6 +19,7 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
     stringsCount: 4,
     price: 100,
   };
+
   const [formData, setFormData] = useState<DetailedProduct>(product ?? initialProduct);
   const [productPhoto, setProductPhoto] = useState<File>();
   const inputFileRef = useRef<HTMLInputElement>(null);
@@ -59,7 +60,7 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
                 onChange={handleUpload}
                 hidden
               />
-              { product?.photoUrl ? 'Заменить' : 'Добавить' }
+              { formData.photoUrl ? 'Заменить' : 'Добавить' }
             </button>
             <button className="button button--small button--black-border edit-item-image__btn">Удалить</button>
           </div>
@@ -165,7 +166,7 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
         </div>
         <div className="custom-input add-item__form-input">
           <label>
-            <span>Введите наименование товара</span>
+            <span>{ product ? 'Н' : 'Введите н' }аименование товара</span>
             <input
               type="text"
               name="title"
@@ -185,7 +186,7 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
         </div>
         <div className="custom-input add-item__form-input add-item__form-input--price is-placeholder">
           <label>
-            <span>Введите цену товара</span>
+            <span>{ product ? 'Цена' : 'Введите цену' } товара</span>
             <input
               type="number"
               name="price"
@@ -226,7 +227,7 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
         </div>
         <div className="custom-textarea add-item__form-textarea">
           <label>
-            <span>Введите описание товара</span>
+            <span>{ product ? 'О' : 'Введите о' }писание товара</span>
             <textarea
               name="description"
               placeholder=""
