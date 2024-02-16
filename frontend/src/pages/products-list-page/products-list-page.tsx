@@ -18,11 +18,11 @@ export const ProductsListPage = () => {
     sortField: SortField.ByAdditionDate,
     sortDirection: SortDirection.Ascending,
     page: 1,
-  };
+  }; //TODO: Реализовать пагинацию
 
   const navigate = useNavigate();
   const products = useAppSelector((state: Pick<State, typeof NameSpace.Products>) => state.PRODUCTS.pagination.entities);
-  const [query, setQuery] = useState<ProductsQueryParams>()
+  const [query, setQuery] = useState<ProductsQueryParams>(initialProductsQuery);
   return(
     <>
       <Header />
@@ -46,7 +46,7 @@ export const ProductsListPage = () => {
             </div>
             <button
               className="button product-list__button button--red button--big"
-              onClick={() => navigate(Paths.Create, {redirect: true})}
+              onClick={() => navigate(Paths.Create, {replace: true})}
             >Добавить новый товар
             </button>
             <div className="pagination product-list__pagination">
