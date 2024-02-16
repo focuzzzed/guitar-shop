@@ -2,6 +2,9 @@ import { ChangeEvent, FC, useRef, useState } from 'react';
 import { DetailedProduct } from '../../types/products.types.ts';
 import { GuitarStringsCount, GuitarTypes } from '../../types/enums.ts';
 import { BACKEND_PHOTO_FIELD_NAME } from '../../service/const.ts';
+import { useAppDispatch } from '../../hooks/use-app-dispatch.ts';
+import { postImage, postProduct, updateCurrentProduct } from '../../service/api-actions.ts';
+import * as dayjs from 'dayjs';
 
 export type ItemFormProps = {
   product?: DetailedProduct;
@@ -12,7 +15,7 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
   const initialProduct: DetailedProduct = {
     title: '',
     description: '',
-    additionDate: '',
+    additionDate: dayjs().format('DD.MM.YYYY'),
     photoUrl: '',
     guitarType: GuitarTypes.Acoustic,
     article: '',
@@ -23,6 +26,10 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
   const [formData, setFormData] = useState<DetailedProduct>(product ?? initialProduct);
   const [productPhoto, setProductPhoto] = useState<File>();
   const inputFileRef = useRef<HTMLInputElement>(null);
+  const dispatch = useAppDispatch();
+  const onSubmitAction = product
+    ? updateCurrentProduct
+    : postProduct;
 
   const handleUploadButtonClick = () => {
     if(inputFileRef.current) {
@@ -37,16 +44,23 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
       if(productPhoto){
         const data = new FormData();
         data.append(BACKEND_PHOTO_FIELD_NAME, productPhoto);
+        dispatch(postImage(data));
       }
     }
   };
 
   return(
-    <form className="add-item__form" action="#" method="get">
+    <form
+      className="add-item__form"
+      action="#"
+      method="get"
+    >
       <div className="add-item__form-left">
 
         <div className="edit-item-image add-item__form-image">
-          <div className="edit-item-image__image-wrap"></div>
+          <div className="edit-item-image__image-wrap">
+            <img src={formData.photoUrl} alt="Фотография гитары" />
+          </div>
           <div className="edit-item-image__btn-wrap">
             <button
               className="button button--small button--black-border edit-item-image__btn"
@@ -67,12 +81,6 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
         </div>
         <div
           className="input-radio add-item__form-radio"
-          onChangeCapture={(evt: ChangeEvent<HTMLInputElement>) => {
-            setFormData({
-              ...formData,
-              guitarType: evt.target.value as GuitarTypes,
-            });
-          }}
         >
           <span>{ product ? 'Т' : 'Выберите т' }ип товара</span>
           <input
@@ -81,6 +89,12 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
             name="item-type"
             value={ GuitarTypes.Acoustic }
             checked={ formData.guitarType === GuitarTypes.Acoustic }
+            onChange={(evt: ChangeEvent<HTMLInputElement>) => {
+              setFormData({
+                ...formData,
+                guitarType: evt.target.value as GuitarTypes,
+              });
+            }}
           />
           <label htmlFor="guitar">Акустическая гитара</label>
           <input
@@ -89,6 +103,12 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
             name="item-type"
             value={ GuitarTypes.Electro }
             checked={ formData.guitarType === GuitarTypes.Electro }
+            onChange={(evt: ChangeEvent<HTMLInputElement>) => {
+              setFormData({
+                ...formData,
+                guitarType: evt.target.value as GuitarTypes,
+              });
+            }}
           />
           <label htmlFor="el-guitar">Электрогитара</label>
           <input
@@ -97,17 +117,17 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
             name="item-type"
             value={ GuitarTypes.Ukulele }
             checked={ formData.guitarType === GuitarTypes.Ukulele }
+            onChange={(evt: ChangeEvent<HTMLInputElement>) => {
+              setFormData({
+                ...formData,
+                guitarType: evt.target.value as GuitarTypes,
+              });
+            }}
           />
           <label htmlFor="ukulele">Укулеле</label>
         </div>
         <div
           className="input-radio add-item__form-radio"
-          onChangeCapture={(evt: ChangeEvent<HTMLInputElement>) => {
-            setFormData({
-              ...formData,
-              stringsCount: Number(evt.target.value),
-            });
-          }}
         >
           <span>Количество струн</span>
           <input
@@ -116,6 +136,12 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
             name="string-qty"
             value={GuitarStringsCount.FourString}
             checked={GuitarStringsCount.FourString === formData.stringsCount}
+            onChange={(evt: ChangeEvent<HTMLInputElement>) => {
+              setFormData({
+                ...formData,
+                stringsCount: Number(evt.target.value),
+              });
+            }}
           />
           <label htmlFor="string-qty-4">4</label>
           <input
@@ -124,6 +150,12 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
             name="string-qty"
             value={GuitarStringsCount.SixString}
             checked={GuitarStringsCount.SixString === formData.stringsCount}
+            onChange={(evt: ChangeEvent<HTMLInputElement>) => {
+              setFormData({
+                ...formData,
+                stringsCount: Number(evt.target.value),
+              });
+            }}
           />
           <label htmlFor="string-qty-6">6</label>
           <input
@@ -132,6 +164,12 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
             name="string-qty"
             value={GuitarStringsCount.SevenString}
             checked={GuitarStringsCount.SevenString === formData.stringsCount}
+            onChange={(evt: ChangeEvent<HTMLInputElement>) => {
+              setFormData({
+                ...formData,
+                stringsCount: Number(evt.target.value),
+              });
+            }}
           />
           <label htmlFor="string-qty-7">7</label>
           <input
@@ -140,6 +178,12 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
             name="string-qty"
             value={GuitarStringsCount.TwelveString}
             checked={GuitarStringsCount.TwelveString === formData.stringsCount}
+            onChange={(evt: ChangeEvent<HTMLInputElement>) => {
+              setFormData({
+                ...formData,
+                stringsCount: Number(evt.target.value),
+              });
+            }}
           />
           <label htmlFor="string-qty-12">12</label>
         </div>
@@ -152,7 +196,7 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
               type="text"
               name="date"
               pattern="\d\d.\d\d.\d\d\d\d"
-              value={ formData.additionDate }
+              value={ product ? dayjs(formData.additionDate).format('DD.MM.YYYY') : formData.additionDate}
               placeholder="Дата в формате 00.00.0000"
               onChange={(evt) => {
                 setFormData({
@@ -192,7 +236,6 @@ export const ItemForm: FC<ItemFormProps> = ({ product }) => {
               name="price"
               min="100"
               max="1000000"
-              step="100"
               value={ formData.price }
               placeholder="Цена в формате 00 000"
               onChange={(evt) => {

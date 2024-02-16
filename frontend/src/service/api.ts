@@ -35,7 +35,6 @@ export const createAPI = () => {
         const detailMessage = error.response.data;
         toast.warn(detailMessage.message);
       }
-
       throw error;
     }
   );

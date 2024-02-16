@@ -1,4 +1,11 @@
 import { FC, useRef, useState } from 'react';
+import { useAppDispatch } from '../../hooks/use-app-dispatch.ts';
+import { loginUser, registerUser } from '../../service/api-actions.ts';
+import { State, useAppSelector } from '../../hooks/use-app-selector.ts';
+import { NameSpace } from '../../types/enums.ts';
+import { useHistory, useNavigate } from 'react-router-dom';
+import { Paths } from '../../service/const.ts';
+import { getUserLoadingStatus } from '../../store/user-process/user-process.selectors.ts';
 
 type AuthFormProps = {
   isRegister: boolean
@@ -15,6 +22,9 @@ export const AuthForm: FC<AuthFormProps> = ({ isRegister }) => {
 
   const [formData, setFormData] = useState(initialFormData);
   const passwordFieldRef = useRef<HTMLInputElement>(null);
+  const isLoading = useAppSelector(getUserLoadingStatus);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleEyeMouseDown = () => {
     if(passwordFieldRef.current) {
@@ -28,8 +38,22 @@ export const AuthForm: FC<AuthFormProps> = ({ isRegister }) => {
     }
   };
 
+  const handleAuthSubmit = (evt) => {
+    evt.preventDefault();
+    if(isRegister) {
+      dispatch(registerUser(formData))
+        .then(navigate('../', { replace: true }));
+    } else {
+      dispatch(loginUser(formData));
+    }
+  }
+
   return (
-    <form method="post" action="/">
+    <form
+      method="post"
+      action="/"
+      onSubmit={(evt) => handleAuthSubmit(evt)}
+    >
       {isRegister && (
         <div className="input-login">
           <label htmlFor="name">Введите имя</label>
@@ -75,6 +99,7 @@ export const AuthForm: FC<AuthFormProps> = ({ isRegister }) => {
             placeholder="• • • • • • • • • • • •"
             id="passwordLogin"
             name="password"
+            maxLength={12}
             autoComplete="off"
             value={formData.password}
             onChange={(evt) => setFormData({
@@ -98,6 +123,7 @@ export const AuthForm: FC<AuthFormProps> = ({ isRegister }) => {
       <button
         className="button login__button button--medium"
         type="submit"
+        disabled={isLoading}
       >{isRegister ? 'Зарегистрироваться' : 'Войти'}
       </button>
     </form>

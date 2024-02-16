@@ -4,6 +4,7 @@ import { AuthorizationStatus, NameSpace } from '../../types/enums.ts';
 import { State, useAppSelector } from '../../hooks/use-app-selector.ts';
 import { Navigate } from 'react-router-dom';
 import { Paths } from 'tsconfig-paths/lib/mapping-entry';
+import { getAuthStatus } from '../../store/user-process/user-process.selectors.ts';
 
 type PrivateRouteProps = {
   restrictedFor: AuthorizationStatus;
@@ -12,7 +13,7 @@ type PrivateRouteProps = {
 }
 
 const PrivateRoute = ({ children, restrictedFor, redirectTo }: PrivateRouteProps): JSX.Element => {
-  const authorizationStatus = useAppSelector((state: Pick<State, typeof NameSpace.User>) => state.USER.authStatus);
+  const authorizationStatus = useAppSelector(getAuthStatus);
 
   if (authorizationStatus === AuthorizationStatus.Unknown) {
     return <Spinner />;

@@ -14,7 +14,7 @@ export function getFileExtension(filename: string) {
 
 export function generateProducts(count: number) {
   const generatedProducts: Product[] = [];
-  const MOCK_GUITAR_FILENAME = 'mock-guitar.png';
+  const MOCK_GUITAR_FILENAME = 'http://localhost:3333/static/mock-guitar.png';
   for(let i = 0; i < count; i++) {
     const product: Product = {
       title: `${faker.commerce.productAdjective()} guitar`,

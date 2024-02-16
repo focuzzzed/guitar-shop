@@ -11,12 +11,12 @@ import { useEffect } from 'react';
 import { checkAuth, fetchProducts } from '../../service/api-actions.ts';
 import { ProductPage } from '../../pages/product-page/product-page.tsx';
 import PrivateRoute from '../private-route/private-route.tsx';
+import { ProductsListPage } from '../../pages/products-list-page/products-list-page.tsx';
+import { EditItemPage } from '../../pages/edit-item-page/edit-item-page.tsx';
 
 export const App = () => {
   const dispatch = useAppDispatch();
-  //TODO: Написать PrivateRoute, передать в него AuthStatus
   //TODO: Написать Дописать страницы
-  //TODO: Breadcrumbs
   useEffect(() => {
     dispatch(fetchProducts({}));
     dispatch(checkAuth());
@@ -56,9 +56,16 @@ export const App = () => {
 
         <Route path={Paths.Update} element={
           <PrivateRoute restrictedFor={AuthorizationStatus.NoAuth} redirectTo={Paths.Products}>
-            <AddItemPage/>
+            <EditItemPage/>
           </PrivateRoute>
         }
+        />
+
+        <Route
+          path={Paths.Products}
+          element={
+          <ProductsListPage/>
+          }
         />
 
         <Route

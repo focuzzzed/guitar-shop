@@ -1,7 +1,7 @@
 import { Header } from '../../components/header/header.tsx';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { DEFAULT_PRODUCT_LIMIT, Paths } from '../../service/const.ts';
-import { CrumbName, GuitarStringsCount, GuitarTypes, NameSpace, SortDirection, SortField } from '../../types/enums.ts';
+import { CrumbName, NameSpace, SortDirection, SortField } from '../../types/enums.ts';
 import { ProductFiltersForm } from '../../components/product-filters-form/product-filters-form.tsx';
 import { ProductSortForm } from '../../components/product-sort-form/product-sort-form.tsx';
 import { Footer } from '../../components/footer/footer.tsx';
@@ -20,6 +20,7 @@ export const ProductsListPage = () => {
     page: 1,
   };
 
+  const navigate = useNavigate();
   const products = useAppSelector((state: Pick<State, typeof NameSpace.Products>) => state.PRODUCTS.pagination.entities);
   const [query, setQuery] = useState<ProductsQueryParams>()
   return(
@@ -35,15 +36,19 @@ export const ProductsListPage = () => {
               </li>
             </ul>
             <div className="catalog">
-              <ProductFiltersForm setQuery={setQuery} />
-              <ProductSortForm />
+              <ProductFiltersForm query={query} setQuery={setQuery} />
+              <ProductSortForm query={query} setQuery={setQuery}/>
               <div className="catalog-cards">
                 <ul className="catalog-cards__list">
                   {products.map((product) => (<ProductPreviewCard product={product} key={product.id}/>))}
                 </ul>
               </div>
             </div>
-            <button className="button product-list__button button--red button--big">Добавить новый товар</button>
+            <button
+              className="button product-list__button button--red button--big"
+              onClick={() => navigate(Paths.Create, {redirect: true})}
+            >Добавить новый товар
+            </button>
             <div className="pagination product-list__pagination">
               <ul className="pagination__list">
                 <li className="pagination__page pagination__page--active"><a className="link pagination__page-link" href="1">1</a></li>

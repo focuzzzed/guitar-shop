@@ -2,12 +2,12 @@ import { ChangeEvent, Dispatch, FC } from 'react';
 import { ProductsQueryParams } from '../../types/products.types.ts';
 import { GuitarStringsCount, GuitarTypes } from '../../types/enums.ts';
 
-type ProductParametersFormProps = {
+type ProductFiltersFormProps = {
   query: ProductsQueryParams;
   setQuery: Dispatch<ProductsQueryParams>;
 }
 
-export const ProductFiltersForm: FC<ProductParametersFormProps> = ({ query, setQuery }) => {
+export const ProductFiltersForm: FC<ProductFiltersFormProps> = ({ query, setQuery }) => {
   const handleGuitarTypeChange = (evt: ChangeEvent<HTMLInputElement>) => {
     if(evt.target.checked) {
       setQuery({

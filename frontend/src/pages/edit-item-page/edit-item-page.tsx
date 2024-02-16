@@ -10,12 +10,13 @@ import { fetchCurrentProduct } from '../../service/api-actions.ts';
 import { ErrorPage } from '../error-page/error-page.tsx';
 import { useEffect } from 'react';
 import { Spinner } from '../../components/spinner/spinner.tsx';
+import { getCurrentProduct, getProductsLoadingStatus } from '../../store/product-process/product-process.selectors.ts';
 
 export const EditItemPage = () => {
   const params = useParams();
   const dispatch = useAppDispatch();
-  const isLoad = useAppSelector((state: Pick<State, typeof NameSpace.Products>) => state.PRODUCTS.isLoading);
-  const product = useAppSelector((state: Pick<State, typeof NameSpace.Products>) => state.PRODUCTS.currentProduct);
+  const isLoading = useAppSelector(getProductsLoadingStatus);
+  const product = useAppSelector(getCurrentProduct);
 
   useEffect(() => {
     const { id } = params;
@@ -24,7 +25,7 @@ export const EditItemPage = () => {
     }
   }, [dispatch, params]);
 
-  if(isLoad) {
+  if(isLoading) {
     return <Spinner/>;
   }
 
@@ -38,11 +39,11 @@ export const EditItemPage = () => {
       <main className="page-content">
         <section className="edit-item">
           <div className="container">
-            <h1 className="add-item__title">{ productName }</h1>
+            <h1 className="add-item__title">{ product.title }</h1>
             <ul className="breadcrumbs page-content__breadcrumbs">
               <li className="breadcrumbs__item"><Link className="link" to={Paths.Login}>{CrumbName.Login}</Link></li>
               <li className="breadcrumbs__item"><Link className="link" to={Paths.Products}>{CrumbName.Products}</Link></li>
-              <li className="breadcrumbs__item"><Link className="link" to="#">{ productName }</Link></li>
+              <li className="breadcrumbs__item"><Link className="link" to="#">{ product.title }</Link></li>
             </ul>
             <ItemForm product={product} />
           </div>

@@ -19,8 +19,8 @@ import {
   removeProduct,
   updateProduct
 } from '../store/product-process/product-process.slice.ts';
-import { Navigate } from 'react-router-dom';
 import { Paths } from './const.ts';
+import { Navigate } from 'react-router-dom';
 
 type AsyncThunkConfig = {
   dispatch: AppDispatch;
@@ -51,9 +51,8 @@ export const checkAuth = createAsyncThunk<void, undefined, AsyncThunkConfig>(
 export const registerUser = createAsyncThunk<void, UserRegisterInfo, AsyncThunkConfig>(
   Action.REGISTER_USER,
   async ({ name, email, password }, { extra: api }) => {
-    const { data: userData } = await api.post<UserInfo>('http://localhost:3333/auth/login', { name, email, password });
+    const { data: userData } = await api.post<UserInfo>('http://localhost:3333/auth/register', { name, email, password });
     toast.success(`${ userData.name }, thank you for registering! Login info has been sent to ${ userData.email }`);
-    Navigate({to: Paths.Login});
   }
 );
 
@@ -64,7 +63,7 @@ export const loginUser = createAsyncThunk<void, UserLoginInfo, AsyncThunkConfig>
       email,
       password
     });
-    Token.save(authData.token);
+    Token.save(authData.accessToken);
     dispatch(loadUserData(authData));
   }
 );
@@ -72,7 +71,9 @@ export const loginUser = createAsyncThunk<void, UserLoginInfo, AsyncThunkConfig>
 export const postImage = createAsyncThunk<string, File, AsyncThunkConfig>(
   Action.UPLOAD_PHOTO,
   async (file, { extra: api }) => {
-    const { data: imagePath } = await api.post<string>('http://localhost:3333/files/upload', file);
+    const { data: imagePath } = await api.post<string>('http://localhost:3333/files/upload', file, {
+      'content-type': 'multipart/form-data'
+    });
     return imagePath;
   }
 );
