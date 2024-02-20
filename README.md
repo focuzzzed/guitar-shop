@@ -20,9 +20,17 @@ npm install
 
 ### Настройте переменные окружения
 
-В корне проекта находится файл `.env.example`. Скопируйте его содержимое в файл `.env` и настройте значения переменных.
+В корне проекта находится файл `app.env.example`. Скопируйте его содержимое в файл `app.env` и настройте значения переменных.
+
+Также, в директории `shared/libs/models/prisma` находится файл `.env.example`. Скопируйте его содержимое в файл `.env` и настройте значение единственной переменной:
+
+- `DATABASE_URL=postgres://admin:test@localhost:5432/guitar_shop` - Строка подключения к базе данных для PrismaORM.
 
 #### Список переменных окружения
+
+##### PrismaORM
+
+- `DATABASE_URL=postgres://admin:test@localhost:5432/guitar_shop` - Строка подключения к базе данных.
 
 ##### База данных PostgreSQL
 
@@ -74,12 +82,20 @@ up \
 -d
 ```
 
+### Примените миграции к базе данных
+
+В проекте заготовлен скрипт для применения миграций к базе данных:
+
+```bash
+npm run db:migrate
+```
+
 ### Наполните базу данных
 
 Сгенерируйте нужное количество товаров. Для этого необходимо указать их количество и строку подключения:
 
 ```bash
-npm run ./src/main.cli.ts -- --generate 50 postgres://admin:test@localhost:5432/guitar_shop                                                                                                                                                                                                                                       
+npm run ts ./src/main.cli.ts -- --generate 50 postgres://admin:test@localhost:5432/guitar_shop                                                                                                                                                                                                                                       
 ```
 
 ### Запустите проект

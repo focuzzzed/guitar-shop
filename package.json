@@ -16,7 +16,7 @@
     "db:generate": "npx prisma generate --schema src/shared/libs/models/prisma/schema.prisma",
     "db:reset": "npx prisma migrate reset --schema src/shared/libs/models/prisma/schema.prisma --force --skip-generate --skip-seed",
     "db:lint": "npx prisma validate --schema src/shared/libs/models/prisma/schema.prisma",
-    "db:migrate": "npx prisma migrate dev --schema ./schema.prisma --skip-generate --skip-seed"
+    "db:migrate": "npx prisma migrate dev --schema src/shared/libs/models/prisma/schema.prisma --skip-generate --skip-seed"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "1.10.3",
