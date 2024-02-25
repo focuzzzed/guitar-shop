@@ -3,6 +3,7 @@ import { AuthorizationStatus } from '../../types/enums.ts';
 import { useAppSelector } from '../../hooks/use-app-selector.ts';
 import { Navigate } from 'react-router-dom';
 import { getAuthStatus } from '../../store/user-process/user-process.selectors.ts';
+import { FC } from 'react';
 
 type PrivateRouteProps = {
   restrictedFor: AuthorizationStatus;
@@ -10,15 +11,15 @@ type PrivateRouteProps = {
   children: JSX.Element;
 }
 
-const PrivateRoute = ({ children, restrictedFor, redirectTo }: PrivateRouteProps): JSX.Element => {
-  const authorizationStatus = useAppSelector(getAuthStatus);
+const PrivateRoute: FC<PrivateRouteProps> = ({ restrictedFor, redirectTo, children }) => {
+  const authStatus = useAppSelector(getAuthStatus);
 
-  if (authorizationStatus === AuthorizationStatus.Unknown) {
+  if(authStatus === AuthorizationStatus.Unknown) {
     return <Spinner />;
   }
 
   return (
-    authorizationStatus !== restrictedFor
+    authStatus !== restrictedFor
       ? children
       : <Navigate to={redirectTo} />
   );

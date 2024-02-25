@@ -21,4 +21,4 @@ export const Paths = {
   Product: '/products/:id',
   Create: '/products/new',
   Update: '/products/:id/edit'
-};
+} as const;

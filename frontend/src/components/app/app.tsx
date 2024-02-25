@@ -62,9 +62,10 @@ export const App = () => {
         />
 
         <Route
-          path={Paths.Products}
-          element={
-            <ProductsListPage/>
+          path={Paths.Products} element={
+            <PrivateRoute restrictedFor={AuthorizationStatus.NoAuth} redirectTo={Paths.Login}>
+              <ProductsListPage/>
+            </PrivateRoute>
           }
         />
 
