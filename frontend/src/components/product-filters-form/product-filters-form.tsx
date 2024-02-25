@@ -1,42 +1,33 @@
-import { ChangeEvent, Dispatch, FC } from 'react';
-import { ProductsQueryParams } from '../../types/products.types.ts';
+import { ChangeEvent, FC, useEffect } from 'react';
 import { GuitarStringsCount, GuitarTypes } from '../../types/enums.ts';
+import { useAppDispatch } from '../../hooks/use-app-dispatch.ts';
+import { useAppSelector } from '../../hooks/use-app-selector.ts';
+import { getPaginationState } from '../../store/pagination-process/pagination-process.selectors.ts';
+import { PaginationState } from '../../types/paginations.types.ts';
+import { resetPaginationState, updateGuitarTypes, updateStringsCount } from '../../store/pagination-process/pagination-process.slice.ts';
+import { fetchProducts } from '../../service/api-actions.ts';
 
-type ProductFiltersFormProps = {
-  query: ProductsQueryParams;
-  setQuery: Dispatch<ProductsQueryParams>;
-}
+export const ProductFiltersForm: FC = () => {
+  const dispatch = useAppDispatch();
+  const paginationState = useAppSelector<PaginationState>(getPaginationState);
 
-export const ProductFiltersForm: FC<ProductFiltersFormProps> = ({ query, setQuery }) => {
-  const handleGuitarTypeChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    if(evt.target.checked) {
-      setQuery({
-        ...query,
-        guitarTypes: [].concat(guitarTypes as GuitarTypes[], evt.target.value),
-      });
-    } else {
-      setQuery({
-        ...query,
-        guitarTypes: [guitarTypes].flat(2).filter((value) => value !== evt.target.value),
-      });
-    }
+  useEffect(() => {
+    dispatch(fetchProducts(paginationState));
+  }, [paginationState, dispatch]);
+
+  const handleTypeCheckboxChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    const selectedType = evt.target.value;
+    dispatch(updateGuitarTypes(selectedType as GuitarTypes));
   };
 
-  const handleStringsCountChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    if(evt.target.checked) {
-      setQuery({
-        ...query,
-        stringsCount: [].concat(guitarStringsCount as GuitarStringsCount[], evt.target.value),
-      });
-    } else {
-      setQuery({
-        ...query,
-        stringsCount: [guitarTypes].flat(2).filter((value) => value !== evt.target.value),
-      });
-    }
+  const handleStringsCheckboxChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    const selectedCount = Number(evt.target.value);
+    dispatch(updateStringsCount(selectedCount as GuitarStringsCount));
   };
 
-  return (
+  const handleResetButtonClick = () => dispatch(resetPaginationState());
+
+  return(
     <form className="catalog-filter" action="#" method="post">
       <h2 className="title title--bigger catalog-filter__title">Фильтр</h2>
       <fieldset className="catalog-filter__block">
@@ -48,7 +39,8 @@ export const ProductFiltersForm: FC<ProductFiltersFormProps> = ({ query, setQuer
             id="acoustic"
             name="acoustic"
             value={GuitarTypes.Acoustic}
-            onChange={(evt) => handleGuitarTypeChange(evt)}
+            checked={paginationState.guitarTypes.includes(GuitarTypes.Acoustic)}
+            onChange={(evt) => handleTypeCheckboxChange(evt)}
           />
           <label htmlFor="acoustic">Акустические гитары</label>
         </div>
@@ -59,7 +51,8 @@ export const ProductFiltersForm: FC<ProductFiltersFormProps> = ({ query, setQuer
             id="electric"
             name="electric"
             value={GuitarTypes.Electro}
-            onChange={(evt) => handleGuitarTypeChange(evt)}
+            checked={paginationState.guitarTypes.includes(GuitarTypes.Electro)}
+            onChange={(evt) => handleTypeCheckboxChange(evt)}
           />
           <label htmlFor="electric">Электрогитары</label>
         </div>
@@ -70,7 +63,8 @@ export const ProductFiltersForm: FC<ProductFiltersFormProps> = ({ query, setQuer
             id="ukulele"
             name="ukulele"
             value={GuitarTypes.Ukulele}
-            onChange={(evt) => handleGuitarTypeChange(evt)}
+            checked={paginationState.guitarTypes.includes(GuitarTypes.Ukulele)}
+            onChange={(evt) => handleTypeCheckboxChange(evt)}
           />
           <label htmlFor="ukulele">Укулеле</label>
         </div>
@@ -85,7 +79,8 @@ export const ProductFiltersForm: FC<ProductFiltersFormProps> = ({ query, setQuer
             id="4-strings"
             name="4-strings"
             value={GuitarStringsCount.FourString}
-            onChange={(evt) => handleStringsCountChange(evt)}
+            checked={paginationState.stringsCount.includes(GuitarStringsCount.FourString)}
+            onChange={(evt) => handleStringsCheckboxChange(evt)}
           />
           <label htmlFor="4-strings">4</label>
         </div>
@@ -96,7 +91,8 @@ export const ProductFiltersForm: FC<ProductFiltersFormProps> = ({ query, setQuer
             id="6-strings"
             name="6-strings"
             value={GuitarStringsCount.SixString}
-            onChange={(evt) => handleStringsCountChange(evt)}
+            checked={paginationState.stringsCount.includes(GuitarStringsCount.SixString)}
+            onChange={(evt) => handleStringsCheckboxChange(evt)}
           />
           <label htmlFor="6-strings">6</label>
         </div>
@@ -107,7 +103,8 @@ export const ProductFiltersForm: FC<ProductFiltersFormProps> = ({ query, setQuer
             id="7-strings"
             name="7-strings"
             value={GuitarStringsCount.SevenString}
-            onChange={(evt) => handleStringsCountChange(evt)}
+            checked={paginationState.stringsCount.includes(GuitarStringsCount.SevenString)}
+            onChange={(evt) => handleStringsCheckboxChange(evt)}
           />
           <label htmlFor="7-strings">7</label>
         </div>
@@ -118,12 +115,18 @@ export const ProductFiltersForm: FC<ProductFiltersFormProps> = ({ query, setQuer
             id="12-strings"
             name="12-strings"
             value={GuitarStringsCount.TwelveString}
-            onChange={(evt) => handleStringsCountChange(evt)}
+            checked={paginationState.stringsCount.includes(GuitarStringsCount.TwelveString)}
+            onChange={(evt) => handleStringsCheckboxChange(evt)}
           />
           <label htmlFor="12-strings">12</label>
         </div>
       </fieldset>
-      <button className="catalog-filter__reset-btn button button--black-border button--medium" type="reset">Очистить</button>
+      <button
+        className="catalog-filter__reset-btn button button--black-border button--medium"
+        type="reset"
+        onClick={handleResetButtonClick}
+      >Очистить
+      </button>
     </form>
   );
 };

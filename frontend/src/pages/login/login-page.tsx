@@ -12,7 +12,7 @@ export const LoginPage = () => (
         <section className="login">
           <h1 className="login__title">Войти</h1>
           <p className="login__text">Hовый пользователь?
-            <Link className="login__link" to={Paths.Register}>Зарегистрируйтесь</Link> прямо сейчас
+            <Link className="login__link" to={Paths.Register}> Зарегистрируйтесь</Link> прямо сейчас
           </p>
           <AuthForm isRegister={false}/>
         </section>

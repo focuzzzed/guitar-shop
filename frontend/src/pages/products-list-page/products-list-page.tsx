@@ -1,28 +1,18 @@
 import { Header } from '../../components/header/header.tsx';
 import { Link, useNavigate } from 'react-router-dom';
-import { DEFAULT_PRODUCT_LIMIT, Paths } from '../../service/const.ts';
-import { CrumbName, NameSpace, SortDirection, SortField } from '../../types/enums.ts';
+import { Paths } from '../../service/const.ts';
+import { CrumbName, NameSpace } from '../../types/enums.ts';
 import { ProductFiltersForm } from '../../components/product-filters-form/product-filters-form.tsx';
 import { ProductSortForm } from '../../components/product-sort-form/product-sort-form.tsx';
 import { Footer } from '../../components/footer/footer.tsx';
 import { State, useAppSelector } from '../../hooks/use-app-selector.ts';
 import { ProductPreviewCard } from '../../components/product-preview-card/product-preview-card.tsx';
-import { useState } from 'react';
-import { ProductsQueryParams } from '../../types/products.types.ts';
+import { Product } from '../../types/products.types.ts';
 
 export const ProductsListPage = () => {
-  const initialProductsQuery = {
-    limit: DEFAULT_PRODUCT_LIMIT,
-    guitarTypes: [],
-    stringsCount: [],
-    sortField: SortField.ByAdditionDate,
-    sortDirection: SortDirection.Ascending,
-    page: 1,
-  }; //TODO: Реализовать пагинацию
-
   const navigate = useNavigate();
-  const products = useAppSelector((state: Pick<State, typeof NameSpace.Products>) => state.PRODUCTS.pagination.entities);
-  const [query, setQuery] = useState<ProductsQueryParams>(initialProductsQuery);
+  const products = useAppSelector<Product[]>((state: Pick<State, typeof NameSpace.Products>) => state.PRODUCT.pagination.entities);
+
   return(
     <>
       <Header />
@@ -36,8 +26,8 @@ export const ProductsListPage = () => {
               </li>
             </ul>
             <div className="catalog">
-              <ProductFiltersForm query={query} setQuery={setQuery} />
-              <ProductSortForm query={query} setQuery={setQuery}/>
+              <ProductFiltersForm />
+              <ProductSortForm />
               <div className="catalog-cards">
                 <ul className="catalog-cards__list">
                   {products.map((product) => (<ProductPreviewCard product={product} key={product.id}/>))}

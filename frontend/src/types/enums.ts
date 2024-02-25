@@ -9,8 +9,8 @@ export enum AuthorizationStatus {
 
 export enum NameSpace {
   User = 'USER',
-  Products = 'PRODUCTS',
-  Loaders = 'LOADERS'
+  Products = 'PRODUCT',
+  Pagination = 'PAGINATION',
 }
 export enum GuitarTypes {
   Electro = 'электро',
