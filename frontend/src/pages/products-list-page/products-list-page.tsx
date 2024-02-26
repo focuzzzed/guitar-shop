@@ -8,6 +8,7 @@ import { Footer } from '../../components/footer/footer.tsx';
 import { State, useAppSelector } from '../../hooks/use-app-selector.ts';
 import { ProductPreviewCard } from '../../components/product-preview-card/product-preview-card.tsx';
 import { Product } from '../../types/products.types.ts';
+import { ProductPaginationButtons } from '../../components/product-pagination-buttons/product-pagination-buttons.tsx';
 
 export const ProductsListPage = () => {
   const navigate = useNavigate();
@@ -39,14 +40,7 @@ export const ProductsListPage = () => {
               onClick={() => navigate(Paths.Create, {replace: true})}
             >Добавить новый товар
             </button>
-            <div className="pagination product-list__pagination">
-              <ul className="pagination__list">
-                <li className="pagination__page pagination__page--active"><a className="link pagination__page-link" href="1">1</a></li>
-                <li className="pagination__page"><a className="link pagination__page-link" href="2">2</a></li>
-                <li className="pagination__page"><a className="link pagination__page-link" href="3">3</a></li>
-                <li className="pagination__page pagination__page--next" id="next"><a className="link pagination__page-link" href="2">Далее</a></li>
-              </ul>
-            </div>
+            <ProductPaginationButtons />
           </div>
         </section>
       </main>

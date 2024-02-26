@@ -4,8 +4,9 @@ import { useAppDispatch } from '../../hooks/use-app-dispatch.ts';
 import { useAppSelector } from '../../hooks/use-app-selector.ts';
 import { getPaginationState } from '../../store/pagination-process/pagination-process.selectors.ts';
 import { PaginationState } from '../../types/paginations.types.ts';
-import { resetPaginationState, updateGuitarTypes, updateStringsCount } from '../../store/pagination-process/pagination-process.slice.ts';
+import { resetPaginationState, updateCurrentPage, updateGuitarTypes, updateStringsCount } from '../../store/pagination-process/pagination-process.slice.ts';
 import { fetchProducts } from '../../service/api-actions.ts';
+import { FIRST_PAGE_NUMBER } from '../../service/const.ts';
 
 export const ProductFiltersForm: FC = () => {
   const dispatch = useAppDispatch();
@@ -17,11 +18,13 @@ export const ProductFiltersForm: FC = () => {
 
   const handleTypeCheckboxChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const selectedType = evt.target.value;
+    dispatch(updateCurrentPage(FIRST_PAGE_NUMBER));
     dispatch(updateGuitarTypes(selectedType as GuitarTypes));
   };
 
   const handleStringsCheckboxChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const selectedCount = Number(evt.target.value);
+    dispatch(updateCurrentPage(FIRST_PAGE_NUMBER));
     dispatch(updateStringsCount(selectedCount as GuitarStringsCount));
   };
 

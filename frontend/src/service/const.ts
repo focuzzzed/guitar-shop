@@ -7,6 +7,8 @@ export const DEFAULT_PRODUCT_LIMIT = 7;
 
 export const BACKEND_PHOTO_FIELD_NAME = 'file';
 
+export const FIRST_PAGE_NUMBER = 1;
+
 export const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
   [StatusCodes.UNAUTHORIZED]: true,
