@@ -1,4 +1,6 @@
 import { State } from '../../hooks/use-app-selector';
 import { NameSpace } from '../../types/enums';
 
-export const getPaginationState = (state: Pick<State, typeof NameSpace.Pagination>) => state.PAGINATION;
+type PaginationProcessState = Pick<State, typeof NameSpace.Pagination>
+
+export const getPaginationState = (state: PaginationProcessState) => state.PAGINATION;

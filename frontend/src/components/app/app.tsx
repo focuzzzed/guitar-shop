@@ -10,7 +10,7 @@ import { AddItemPage } from '../../pages/add-item-page/add-item-page.tsx';
 import { useEffect } from 'react';
 import { checkAuth, fetchProducts } from '../../service/api-actions.ts';
 import { ProductPage } from '../../pages/product-page/product-page.tsx';
-import PrivateRoute from '../private-route/private-route.tsx';
+import { PrivateRoute } from '../private-route/private-route.tsx';
 import { ProductsListPage } from '../../pages/products-list-page/products-list-page.tsx';
 import { EditItemPage } from '../../pages/edit-item-page/edit-item-page.tsx';
 
