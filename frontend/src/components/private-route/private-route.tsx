@@ -11,7 +11,7 @@ type PrivateRouteProps = {
   children: JSX.Element;
 }
 
-const PrivateRoute: FC<PrivateRouteProps> = ({ restrictedFor, redirectTo, children }) => {
+export const PrivateRoute: FC<PrivateRouteProps> = ({ restrictedFor, redirectTo, children }) => {
   const authStatus = useAppSelector(getAuthStatus);
 
   if(authStatus === AuthorizationStatus.Unknown) {
@@ -24,5 +24,3 @@ const PrivateRoute: FC<PrivateRouteProps> = ({ restrictedFor, redirectTo, childr
       : <Navigate to={redirectTo} />
   );
 };
-
-export default PrivateRoute;

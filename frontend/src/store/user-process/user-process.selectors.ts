@@ -1,8 +1,10 @@
 import { State } from '../../hooks/use-app-selector.ts';
 import { NameSpace } from '../../types/enums.ts';
 
-export const getAuthStatus = (state: Pick<State, typeof NameSpace.User>) => state.USER.authStatus;
+type UserProcessState = Pick<State, typeof NameSpace.User>;
 
-export const getUser = (state: Pick<State, typeof NameSpace.User>) => state.USER.userInfo;
+export const getAuthStatus = (state: UserProcessState) => state.USER.authStatus;
 
-export const getUserLoadingStatus = (state: Pick<State, typeof NameSpace.User>) => state.USER.isLoading;
+export const getUser = (state: UserProcessState) => state.USER.userInfo;
+
+export const getUserLoadingStatus = (state: UserProcessState) => state.USER.isLoading;

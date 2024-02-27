@@ -1,10 +1,14 @@
 import { State } from '../../hooks/use-app-selector.ts';
 import { NameSpace } from '../../types/enums.ts';
 
-export const getProductsLoadingStatus = (state: Pick<State, typeof NameSpace.Products>) => state.PRODUCT.isLoading;
+type PaginationProcessState = Pick<State, typeof NameSpace.Products>;
 
-export const getCurrentProduct = (state: Pick<State, typeof NameSpace.Products>) => state.PRODUCT.currentProduct;
+export const getProductsLoadingStatus = (state: PaginationProcessState) => state.PRODUCT.isLoading;
 
-export const getCurrentPage = (state: Pick<State, typeof NameSpace.Products>) => state.PRODUCT.pagination.currentPage;
+export const getCurrentProduct = (state: PaginationProcessState) => state.PRODUCT.currentProduct;
 
-export const getPagesCount = (state: Pick<State, typeof NameSpace.Products>) => state.PRODUCT.pagination.totalPages;
+export const getCurrentPage = (state: PaginationProcessState) => state.PRODUCT.pagination.currentPage;
+
+export const getPagesCount = (state: PaginationProcessState) => state.PRODUCT.pagination.totalPages;
+
+export const getProducts = (state: PaginationProcessState) => state.PRODUCT.pagination.entities;

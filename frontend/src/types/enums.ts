@@ -41,3 +41,8 @@ export enum SortField {
   ByAdditionDate = 'additionDate',
   ByPrice = 'price'
 }
+
+export enum ProductTab {
+  Description = 'descriprion',
+  Characteristics = 'characteristics'
+}
